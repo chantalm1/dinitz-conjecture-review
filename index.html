@@ -36,7 +36,7 @@
                ></orbit-prompt>
             <orbit-prompt
                question="What is the line graph of a graph $G$?"
-               answer="This is a graph, denoted $L(G)$, defined by using the edges of $G$ as vertices, and drawing an edge between two vertices in $L(G)$ if the corresponding edges in G share a vertex"
+               answer="This is a graph, denoted $L(G)$, defined by using the edges of $G$ as vertices, and drawing an edge between two vertices in $L(G)$ if the corresponding edges in $G$ share a vertex"
                ></orbit-prompt>
             <orbit-prompt
                question="What is the term digraph short for?"
@@ -44,7 +44,7 @@
                ></orbit-prompt>
             <orbit-prompt
                question="What is the notation $K_{n,n}$ short hand for? What type of graph does it represent"
-               answer="$K_{n,n}$ is a graph that two sets $A$ and $B$ each with $n$ vertices such that for every $a \in A$, it has an edge to every $b \in B$, and there are no edges between vertices in A, and B, respectively). The type of graph it represents is a bipartite graph."
+               answer="$K_{n,n}$ is a graph that two sets $A$ and $B$ each with $n$ vertices such that for every $a \in A$, it has an edge to every $b \in B$, and there are no edges between vertices in $A$, and $B$, respectively). The type of graph it represents is a bipartite graph."
                ></orbit-prompt>
             <orbit-prompt
                question="What is the definition of the 'underlying graph' of a directed graph?"
@@ -60,7 +60,7 @@
                ></orbit-prompt>
             <orbit-prompt
                question="What is the kernel of a directed graph $G$ defined to be as per Galvin's notation?"
-               answer="The kernel of a graph, denoted $K$, is an independent subset (independent set means none of the vertices have any edges between each other) of its vertices such that for every v in V\K, there is a vertex $u \in K$ such that there is an edge $v \to u$ in $G$"
+               answer="The kernel of a graph, denoted $K$, is an independent subset (independent set means none of the vertices have any edges between each other) of its vertices such that for every $v$ in $V\setminus K$, there is a vertex $u \in K$ such that there is an edge $v \to u$ in $G$"
                ></orbit-prompt>
             <orbit-prompt
                question="What is the definition of an 'independent set' of a graph $G$?"
@@ -72,7 +72,7 @@
                ></orbit-prompt>
             <orbit-prompt
                question="What is the 'closed neighborhood' of a vertex in a directed graph defined to be as per Galvin's notation?"
-               answer="The closed neighborhood of a vertex $v$, denoted $N[v]$, is ${u: v \to u or v = u}$ where $v \to u$ means 'there is a directed edge from $v$ to $u$', aka all the vertices including $v$ and that have an edge OUT OF $v$"
+               answer="The closed neighborhood of a vertex $v$, denoted $N[v]$, is $\{u: v \to u \text{ or } v = u\}$ where $v \to u$ means 'there is a directed edge from $v$ to $u$', aka all the vertices including $v$ and that have an edge OUT OF $v$"
                ></orbit-prompt>
             <orbit-prompt
                question="What is an 'induced subgraph' of a graph $G$?"
@@ -103,7 +103,7 @@
                answer="A solvable graph is one in which every normal orientation has a kernel. Note that it is *not* one where every orientation is normal."
                ></orbit-prompt>
             <orbit-prompt
-               question="Does the definition of an 'underlying graph of a graph $G$' as per Galvin's paper apply to a directed or undirected graph G?"
+               question="Does the definition of an 'underlying graph of a graph $G$' as per Galvin's paper apply to a directed or undirected graph $G$?"
                answer="directed"
                ></orbit-prompt>
             <orbit-prompt
@@ -211,10 +211,6 @@
                answer="Yes; the only cliques that exists in the graph are singleton sets consisting of each vertex and a graph consisting of one vertex is normal"
                ></orbit-prompt>
             <orbit-prompt
-               question="Give an example of a directed graph that is not normal" answer-attachments="XbMIiR1oPs.png"
-               answer=""
-               ></orbit-prompt>
-            <orbit-prompt
                question="Is this graph normal?" question-attachments="gqxn8_OO03.png" 
                answer="Yes"
                ></orbit-prompt>
@@ -304,7 +300,7 @@
                ></orbit-prompt>
             <orbit-prompt
                question="Can you find a directed graph that is normal such that deleting a vertex from the graph becomes a non normal graph?"
-               answer="No; Every vertex in a graph is part of at least one clique (where a clique can be empty, or contain 1 or 2 vertices or more). Removing any vertex v from the graph won't cause the clique C it is part of to not have a kernel anymore (because C will continue to be a clique, and the definition of a normal graph is that *every* clique has a kernel, so this includes C with v removed).  Removing a vertex from the graph won't *introduce* any more cliques either because no edges are added to the graph that could change non cliques to cliques."
+               answer="No; Every vertex in a graph is part of at least one clique. Removing any vertex v from the graph won't cause the clique C it is part of to not have a kernel anymore, as C will continue to be a clique.  Removing a vertex from the graph won't *introduce* any more cliques either because no edges are added to the graph that could change non cliques to cliques."
                ></orbit-prompt>
             <orbit-prompt
                question="Can you find a directed graph that is normal such that deleting a vertex from the graph continues to be a normal graph?"
@@ -319,11 +315,11 @@
                answer="Delete the red vertex" answer-attachments="7dhpI6rzyk.png"
                ></orbit-prompt>
             <orbit-prompt
-               question="Show (or disprove) that every normal graph G with a kernel K, where if any vertex is deleted and the graph continues to be normal, that this graph will continue to have a kernel."
-               answer="Suppose the vertex v that is deleted is part of K.  For every v' in G that had an edge v'->v that also doesn't have an outgoing edge to any other elements of K, add v' to the kernel set, which will preserve independence of the kernel set."
+               question="Show (or disprove) that every normal graph $G$ with a kernel $K$, where if any vertex is deleted and the graph continues to be normal, that this graph will continue to have a kernel."
+               answer="Suppose the vertex $v$ that is deleted is part of $K$.  For every $v'$ in $G$ that had an edge $v' \to-> v$ that also doesn't have an outgoing edge to any other elements of $K$, add $v'$ to the kernel set, which will preserve independence of the kernel set."
                ></orbit-prompt>
             <orbit-prompt
-               question="Show (or disprove) that for every non normal graph G without a kernel, if a vertex is deleted from G such that the graph is normal, that it will have a kernel."
+               question="Show (or disprove) that for every non normal graph $G$ without a kernel, if a vertex is deleted from $G$ such that the graph is normal, that it will have a kernel."
                answer="Remove the top vertex and see the result" answer-attachments="HXaH7ielyC.png"
                ></orbit-prompt>
             <orbit-prompt
@@ -338,7 +334,7 @@
             <orbit-prompt
                question="Give an example of a graph which is not solvable"
                answer="Flower snark:
-               Every orientation has a clique of number of vertices at most 2, and for cliques of size 2 or less the edges can be directed in any way and the clique can still have a kernel--so if we can show that for any orientation of this graph, no kernel exists, we will have disproved that it is solvable. It's easiest to work with the second picture, and simply direct the arrows in a circle. So all edges from pink to blue are directed with the tail at pink and head at blue, tail at blue and head at green and so on.  This way, there is no way to choose an independent set where all the vertices outside of that set have an edge to at least one vertex in that independent set. We are forced to pick all the vertices in the graph and that does not form an independent set." answer-attachments="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Graph_homomorphism_into_C5.svg/260px-Graph_homomorphism_into_C5.svg.png"
+               If we can show that for any orientation of this graph, no kernel exists, we will have disproved that it is solvable. It's easiest to work with the second picture, and simply direct the arrows in a circle. So all edges from pink to blue are directed with the tail at pink and head at blue, tail at blue and head at green and so on.  This way, there is no way to choose an independent set where all the vertices outside of that set have an edge to at least one vertex in that independent set. We are forced to pick all the vertices in the graph and that does not form an independent set." answer-attachments="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Graph_homomorphism_into_C5.svg/260px-Graph_homomorphism_into_C5.svg.png"
                ></orbit-prompt>
             <orbit-prompt
                question="Proving Corrolary 2.2 in Galvin's paper from Lemma 2.1--How can you prove that if '$D$ is a digraph, with maximum outdegree $n - 1$, in which every induced subdigraph has a kernel. Then $D$ is (kn: k)-choosable for every $k$' from '$D$ is a digraph in with every induced subdigraph has a kernel. If $f,g: V(D) \to \mathbb{N}$ are such that $f(v) \ge \sum_{u \in N[v]} g(u)$ whenever $g(v) > 0$, then $D$ is (f:g)-choosable' where $N[v]$ is the closed neighborhood of $v$?"
@@ -348,21 +344,18 @@
                question="Does the set consisting of the selected vertices in yellow form the kernel of every normal orientation of this graph?" question-attachments="xybgJLrlmn.png" 
                answer="No; Let us consider an orientation of this graph where both black and pink edges from the 'middle ring' (where 'middle ring' here is defined as the 6 vertices selected in yellow) to the 'inner ring' (where 'inner ring' is defined to be the three vertices in the center of the middle)  are pointing towards the inner ring--so the vertex in the inner ring in the top-left of the triangle (henceforth called vertex 'T') has four incoming edges from the middle ring.  This is a normal orientation for the graph--the four affected edges, two black and two pink, are edges within exactly one clique of size 3 (and of course the trivial cliques consisting of an edge), and each have a kernel consisting of T.  But T has no outgoing edge towards any of the vertices in the middle ring, so the middle ring can't be a kernel for this graph. "
                ></orbit-prompt>
+               <orbit-prompt
+               question="What is the chromatic index of $K_{n,n}$?"
+               answer="n; this can be shown inductively. Suppose you have a graph of n nodes that is fully connected.  We can show inductively on the node number, that if the first i nodes all have different colors, we must select a color distinct from the first i for the i+1 st node. Now that you have shown it is possible to color a fully connected graph of n nodes with n colors, then if you see the line graph of $K_{n,n}$, n as an $n \times n$ grid, just displace the next row’s colors by 1, and keep doing for each row. You can see that each column and row will have n distinct colors."
+               ></orbit-prompt>               
          </orbit-reviewarea>
          <h2 id="challenge-problems" style="font-size: 24px;">Challenge Problems
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
-         <orbit-reviewarea color="turquoise">
-            <orbit-prompt
-               question="How can Dinitz' conjecture be reframed using some or all combination of the terms: (f:g)-choosability, chromatic number, chromatic index?"
-               answer="Dinitz' conjecture is: 'Is it true, that for any graph $D$ where there are $n^2$ vertices are laid out as grid points on a square, and for any vertex in row $i$ column $j$, $v_{ij}$ has edges to every $v_{kj}$ and $v_{il}$ for every $k,l$ in the set ${1..n}$ excluding $i$ and $j$, respectively, and a random subset $C_{sub_v}$ sized $n$, drawn out of a constant $m$ sized set (where $m \ge n$) of colors, it is possible to choose a color $c_v$ and assign it to $v$, out of each $C_{sub_v}$, such that $D$ is colorable using the set formed by the set of $c_v$?'
-               Since $D$ can be also seen as any orientation of the line graph of the bipartite graph $K_{n,n}$, if we were to show that $D$ is n-choosable (aka (f:g)-choosable for constant functions f and g assigning $n$ and 1 to each vertex, respectively), then we will have proven the Dinitz conjecture. This is because if we can show that out of an *infinite number of colors*, drawing $n$ colors randomly and assigning to each vertex of $D$ and showing a vertex can be selected out of each of the lists in a graph colorable way, then we will have *immediately* shown this result for drawing $n$ colors out of $m$ colors where $m \ge n$."
-               ></orbit-prompt>
-            <orbit-prompt
-               question="What is the chromatic index of $K_{n,n}$?"
-               answer="n; this can be shown inductively. Suppose you have a graph of n nodes that is fully connected.  We can show inductively on the node number, that if the first i nodes all have different colors, we must select a color distinct from the first i for the i+1 st node. Now that you have shown it is possible to color a fully connected graph of n nodes with n colors, then if you see the line graph of $K_{n,n}$, n as an $n \times n$ grid, just displace the next row’s colors by 1, and keep doing for each row. You can see that each column and row will have n distinct colors."
-               ></orbit-prompt>
-         </orbit-reviewarea>
+         <p>
+            Dinitz' conjecture be reframed using some or all combination of the terms: (f:g)-choosability, chromatic number, chromatic index. Dinitz' conjecture is: 'Is it true, that for any graph \(D\) where there are \(n^2\) vertices are laid out as grid points on a square, and for any vertex in row \(i\) column \(j\), \(v_{ij}\) has edges to every \(v_{kj}\) and \(v_{il}\) for every \(k,l\) in the set \({1..n}\) excluding \(i\) and \(j\), respectively, and a random subset \(C_{sub_v}\) sized \(n\), drawn out of a constant \(m\) sized set (where \(m \ge n\)) of colors, it is possible to choose a color \(c_v\) and assign it to \(v\), out of each \(C_{sub_v}\), such that \(D\) is colorable using the set formed by the set of \(c_v\)?'
+            Since \(D\) can be also seen as any orientation of the line graph of the bipartite graph \(K_{n,n}\), if we were to show that \(D\) is n-choosable (aka (f:g)-choosable for constant functions f and g assigning \(n\) and 1 to each vertex, respectively), then we will have proven the Dinitz conjecture. This is because if we can show that out of an *infinite number of colors*, drawing \(n\) colors randomly and assigning to each vertex of \(D\) and showing a vertex can be selected out of each of the lists in a graph colorable way, then we will have *immediately* shown this result for drawing \(n\) colors out of \(m\) colors where \(m \ge n\).
+         </p>
          <p>Lemma 2.1 is essential in proving the Dinitz conjecture in Galvin's paper.  Lemma 2.1 in Galvin's paper states: "Let \(D\) be a digraph in which every induced subdigraph has a kernel.  If \(f,g : V(D) \to \mathbb{N}\) are such that \(f(v) \ge \sum_{u \in N[v]} g(u)\) whenever \(g(v) > 0\), then \(D\) is (f:g)-choosable". Below is the body of the proof and some exercises based on it to exercise your thinking!</p>
          <p>Let \(V = V(D)\). We use induction on \(\sum_{v \in V} g(v)\). Let \(W = \{v \in V: g(v) > 0\}\). Let sets \(A_v\) (for \(v \in V\) with \(|A_v| = f(v)\) be given. Choose any \(c\) in \(C = \cup_{v \in W} A_v\).  Let \(S = {v \in W: c \in A_v}\). Let \(K\) be a kernel of \(S\).  Define \(g': V \to \mathbb{N}\) by setting \(g'(v) = g(v) - 1\) for \(v \in K\), and \(g'(v) = g(v)\) for \(v \notin K\), and let \(f'(v) = |A_v\setminus\{c\}|\).  Then \(\sum_{v \in V} g'(v) < \sum_{v \in V} g(v)\) and \(f'(v) \ge \sum_{u \in N[v]} g'(u)\) whenever \(g'(v) > 0\). By the induction hypothesis, \(D\) is (f':g')-choosable.  Thus there are sets \(B'_u\) and \(B'_v\) that are subsets of \(A_u\setminus\{c\}\) and \(A_v\setminus\{c\}\), respectively, such that for any \(u\) and \(v\) that share an edge, \(B'_u \cap B'_v\) is empty.  If we can show that adding back a color to the appropriate \(B'\) sets will result in every \(v\) being assigned a subset \(B'_v\) that has size \(g(v)\) and is a subset of \(A_v\), then we will have shown that \(D\) is (f:g)-choosable.  Define sets \(B_v\) by setting \(B_v = B'_v \cup \{c\}\) if \(v \in K\), and \(B_v = B'_v\) otherwise.  Then \(|B_v| = g(v)\) for every \(v \in V\), and \(B_u \cap B_v\) is empty if \(u\) and \(v\) share an edge.</p>
          <orbit-reviewarea color="turquoise">
