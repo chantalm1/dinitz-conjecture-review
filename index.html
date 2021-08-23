@@ -6,469 +6,474 @@
       <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
    </head>
    <body style="font-size: 21px; margin: 10px 10px; background-color: #48D1CC; line-height: 1.5;">
-    <article style="max-width: 45rem; margin: 12px auto; padding: 50px; background-color: #ffffff;">
-        <h1>A friendly guide to understanding the Dinitz conjecture</h1>
-        <p>by Satira</a></p>
-        <p>August 22, 2021</p>
-
-        <h2 id="toc">Table of contents</h2>
-        <ul>
-          <li><a href="#intro">Introduction</a></li>
-          <li><a href="#definitions">Definitions</a></li>
-          <li><a href="#beginner-problems">Beginner problems</a></li>
-          <li><a href="#problems">Problems</a></li>
-          <li><a href="#challenge-problems">Challenge problems</a></li>
-          <li><a href="#open-questions">My open questions</a></li>
-        </ul>  
-
-        <h2 id="intro">Introduction
-        <a href="#toc" class="heading-marker">↩︎</a></h2>   
-        <p>This is a guide for people who want to learn how to understand a primary research paper in math, specifically in the area of graph theory, one of the more accessible areas of math.  If that is the case, this is the guide for you!  This guide covers the background needed to understand the proof of the <a href="https://en.wikipedia.org/wiki/Dinitz_conjecture">Dinitz conjecture</a>.  The way I would suggest using this guide is to first give a look through of Galvin's succinct <a href="https://kostochk.web.illinois.edu/math581/galvin.pdf">proof</a>.  Pending any confusions from the reader, reading the "Definitions" and "Beginner problems" sections of this guide will aid in clarifying definitions and quizzing oneself on the way in which they are to be used, aiding in gaining foundation to make the paper easy-reading for anyone! After these two sections are covered to one's liking, the "Problems" section covers some harder questions as well as how to interpret the two main results in the paper. Once the reader has covered these three sections, they will be well equipped to read through this succinct paper.</p>
-      <h2 id="definitions">Definitions
-        <a href="#toc" class="heading-marker">↩︎</a></h2>            
-      <orbit-reviewarea color="turquoise" debug>
-         <orbit-prompt
-            question="What is the chromatic number of a graph?"
-            answer="the minimum number of colors needed to color a graph (here, to color a graph means to define a function on the set of vertices of a graph to a set C of 'colors' such that no two vertices that share an edge have the same color)"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the chromatic index of a graph $G$?"
-            answer="the chromatic number of the line graph of $G$"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the line graph of a graph $G$?"
-            answer="This is a graph, denoted $L(G)$, defined by using the edges of $G$ as vertices, and drawing an edge between two vertices in $L(G)$ if the corresponding edges in G share a vertex"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the term digraph short for?"
-            answer="A graph with directed edges"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the notation $K_{n,n}$ short hand for? What type of graph does it represent"
-            answer="$K_{n,n}$ is a graph that two sets $A$ and $B$ each with $n$ vertices such that for every $a \in A$, it has an edge to every $b \in B$, and there are no edges between vertices in A, and B, respectively). The type of graph it represents is a bipartite graph."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the definition of the 'underlying graph' of a directed graph?"
-            answer="The underlying graph of a directed graph is an undirected graph where every directed edge is converted to an undirected edge and if there are multiple edges between vertices, it is collapsed into one edge"
-            ></orbit-prompt>
+      <article style="max-width: 45rem; margin: 12px auto; padding: 50px; background-color: #ffffff;">
+         <h1>A friendly guide to understanding the Dinitz conjecture</h1>
+         <p>by Satira</a></p>
+         <p>August 22, 2021</p>
+         <h2 id="toc">Table of contents</h2>
+         <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#definitions">Definitions</a></li>
+            <li><a href="#beginner-problems">Beginner problems</a></li>
+            <li><a href="#problems">Problems</a></li>
+            <li><a href="#challenge-problems">Challenge problems</a></li>
+            <li><a href="#open-questions">My open questions</a></li>
+         </ul>
+         <h2 id="intro">Introduction
+            <a href="#toc" class="heading-marker">↩︎</a>
+         </h2>
+         <p>This is a guide for people who want to learn how to understand a primary research paper in math, specifically in the area of graph theory, one of the more accessible areas of math.  If that is the case, this is the guide for you!  This guide covers the background needed to understand the proof of the <a href="https://en.wikipedia.org/wiki/Dinitz_conjecture">Dinitz conjecture</a>.  The way I would suggest using this guide is to first give a look through of Galvin's succinct <a href="https://kostochk.web.illinois.edu/math581/galvin.pdf">proof</a>.  Pending any confusions from the reader, reading the "Definitions" and "Beginner problems" sections of this guide will aid in clarifying definitions and quizzing oneself on the way in which they are to be used, aiding in gaining foundation to make the paper easy-reading for anyone! After these two sections are covered to one's liking, the "Problems" section covers some harder questions as well as how to interpret the two main results in the paper. Once the reader has covered these three sections, they will be well equipped to read through this succinct paper.</p>
+         <h2 id="definitions">Definitions
+            <a href="#toc" class="heading-marker">↩︎</a>
+         </h2>
+         <orbit-reviewarea color="turquoise" debug>
             <orbit-prompt
-            question="Is the underlying graph of a directed graph $G$, directed or undirected?"
-            answer="undirected"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is the orientation of a graph $G$, directed or undirected?"
-            answer="directed"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the kernel of a directed graph $G$ defined to be as per Galvin's notation?"
-            answer="The kernel of a graph, denoted $K$, is an independent subset (independent set means none of the vertices have any edges between each other) of its vertices such that for every v in V\K, there is a vertex $u \in K$ such that there is an edge $v \to u$ in $G$"
-            ></orbit-prompt>
-        <orbit-prompt
-            question="What is the definition of an 'independent set' of a graph $G$?"
-            answer="An independent set $S$ is a subset of the vertices of $G$ such that for any two vertices $u$ and $v$ in $S$, there does not exist an edge in either direction between $u$ and $v$"
-            ></orbit-prompt>            
-        <orbit-prompt
-            question="Can the kernel of a directed graph be empty?"
-            answer="Yes"
-        ></orbit-prompt>            
-         <orbit-prompt
-            question="What is the 'closed neighborhood' of a vertex in a directed graph defined to be as per Galvin's notation?"
-            answer="The closed neighborhood of a vertex $v$, denoted $N[v]$, is ${u: v \to u or v = u}$ where $v \to u$ means 'there is a directed edge from $v$ to $u$', aka all the vertices including $v$ and that have an edge OUT OF $v$"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is an 'induced subgraph' of a graph $G$?"
-            answer="An induced subgraph of a graph $G$ is defined as taking any subset $S$ of the vertices of $G$, and retaining all the edges that exist between elements of $S$ in $G$"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is every subgraph an 'induced subgraph'? "
-            answer="No; every induced subgraph is a subgraph, but there may be subgraphs that have deleted edges between vertices that existed in the original graph"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="How does Galvin define a clique of a digraph $G$?"
-            answer="A clique is a non empty subset of the vertices of $G$ such that every pair of vertices in the clique is connected by an edge in at least one direction"
-            ></orbit-prompt>
-        <orbit-prompt
-            question="Can a clique in a graph be empty, as per the definition of a clique?"
-            answer="No"
-        ></orbit-prompt>            
-         <orbit-prompt
-            question="How does Galvin define the whether a digraph is normal?"
-            answer="A digraph is normal if every clique in the digraph has a kernel"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="How does Galvin define an orientation of a graph $G$?"
-            answer="An orientation of  $G$, denoted $O(G)$, is any graph that has $G$ as its underlying graph. (the definition of underlying graph is covered in another card)"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="How does Galvin define a solvable graph?"
-            answer="A solvable graph is one in which every normal orientation has a kernel. Note that it is *not* one where every orientation is normal."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does the definition of an 'underlying graph of a graph $G$' as per Galvin's paper apply to a directed or undirected graph G?"
-            answer="directed"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does the definition of a graph $H$ that is the 'underlying graph of a graph $G$' as per Galvin's paper apply to a directed or undirected graph $H$?"
-            answer="undirected"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does the definition of a graph $H$ that is the 'underlying graph of a graph $G$' as per Galvin's paper apply to a directed or undirected graph $G$?"
-            answer="directed"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does the definition of a clique as per Galvin's paper apply to a directed or undirected graph?"
-            answer="directed"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does the definition of an orientation as per Galvin's paper apply to a directed or undirected graph?"
-            answer="undirected"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does the definition of solvable as per Galvin's paper apply to a directed or undirected graph?"
-            answer="undirected"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the definition of a connected graph (for undirected graphs)?"
-            answer="A connected graph is one where for any pair of vertices $u$ and $v$, there is a path following the edges in the graph from $u$ to $v$"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the definition of a perfect graph as per Galvin's paper?" answer-attachments="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Paley9-perfect.svg/800px-Paley9-perfect.svg.png"
-            answer="A perfect graph is defined on an undirected graph and as one where every induced subgraph of the graph has the property that the size of its largest clique is the chromatic number of the subgraph
-            Example: "
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What type of graphs (directed or undirected) is a perfect graph defined on as per Galvin's paper?"
-            answer="undirected graphs"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What does it mean for a set $K$ of vertices to absorb a vertex $v$?"
-            answer="$K$ absorbs a vertex $v$ if $N[v] \cap K =  \emptyset$"
-            ></orbit-prompt>
-      </orbit-reviewarea>
-      <h2 id="beginner-problems">Beginner problems
-        <a href="#toc" class="heading-marker">↩︎</a></h2>            
-      <orbit-reviewarea color="turquoise" debug>
-         <orbit-prompt
-            question="Is a graph with only 1 vertex and no edges, 1-choosable?"
-            answer="Yes, if there are no self edges"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is a graph with 1 vertex and self edges 0-choosable?"
-            answer="Yes, because the empty set intersected with any set if empty"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is a graph with 1 vertex and self edges 1-choosable?"
-            answer="No--1-choosability fails when we let $u = v$, and since an edge exists between $u$ and $v$, and the only way to select a 1-sized subset of a singleton set is to use the set itself, and a nonempty set intersected with itself is not disjoint"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is a graph with 1 vertex and self edges $n$-choosable where $n > 1$?"
-            answer="yes; there is a way to select two disjoint singleton subsets of a set with more than 1 element."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the chromatic number of a bipartite graph $K_{n,n}$?"
-            answer="2"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="For which graphs is the chromatic number infinity?"
-            answer="Any graph with self loops"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="If you have a directed graph $G$, and it is (f:g)-choosable for some functions $f,g: V \to \mathbb{N}$, is the underlying graph of $G$ also (f:g)-choosable?"
-            answer="Yes; as to test whether a graph is (f:g)-choosable is invariant of the direction of the edges in the graph."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is an example of a directed graph that doesn't have any kernel?"
-            answer="A graph with more than one vertex that has no edges in the graph"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is an example of a directed graph that has a kernel?"
-            answer="Some examples:
-            - A graph with no vertices or only 1 vertex (vacuously has a kernel). 
-- A graph $G$ where there exists a vertex $v$ such that for every other vertex $u$ in the graph, the edge $u \to v$ exists in $G$."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does a normal digraph have a clique with a kernel that consists of more than one vertex?"
-            answer="No; A normal graph by definition has every clique consist of a kernel--as a clique consists of vertices where very pair of vertices has an edge in at least one direction, there is no way to choose an independent subset of the clique that consists of more than one vertex"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the underlying graph of a graph 2 vertices connected by a directed edge?"
-            answer="It is a graph with the vertices with the directed edge converted to non directed edge"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the size of the set of orientations of a fully connected graph on 3 vertices, without relabeling?"
-            answer="8"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is a graph with only one vertex always normal?"
-            answer="Yes; it is vacuously true that every clique (where the only possible one in such a graph has one vertex) is normal as you can choose the kernel to just consists of the vertex"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is a graph with no vertices normal?"
-            answer="Yes; it is vacuously true because there is no clique in the graph"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is a graph with at least one vertex, but no edges, normal?"
-            answer="Yes; the only cliques that exists in the graph are singleton sets consisting of each vertex and a graph consisting of one vertex is normal"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a directed graph that is not normal" answer-attachments="XbMIiR1oPs.png"
-            answer=""
-            ></orbit-prompt>
+               question="What is the chromatic number of a graph?"
+               answer="the minimum number of colors needed to color a graph (here, to color a graph means to define a function on the set of vertices of a graph to a set C of 'colors' such that no two vertices that share an edge have the same color)"
+               ></orbit-prompt>
             <orbit-prompt
-            question="Is this graph normal?" question-attachments="gqxn8_OO03.png" 
-            answer="Yes"
-            ></orbit-prompt>
+               question="What is the chromatic index of a graph $G$?"
+               answer="the chromatic number of the line graph of $G$"
+               ></orbit-prompt>
             <orbit-prompt
-            question="Is this graph normal?" question-attachments="7CGwo68HSq.png" 
-            answer="Yes"
-            ></orbit-prompt>            
-         <orbit-prompt
-            question="Is this graph normal?" question-attachments="c61qX9x89x.png" 
-            answer="Yes"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Can adding edges to a directed graph that is normal, change it to a not normal graph? If so give an example"
-            answer="No; Adding extra edges to a graph won't change whether every clique in the graph has a kernel or not"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Can adding edges to a directed graph that is not normal, change it to a  normal graph? If so give an example?" answer-attachments="7GChs1uNMz.png" 
-            answer="The edges in red are the added edges changing the graph on vertices $A,B,C$ to a normal graph"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a graph where every orientation is normal."
-            answer="A graph with two vertices that is connected by an edge. Any way the edge is oriented or whether another edge is added in an other direction, the clique formed by two vertices has a kernel"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a graph where an orientation exists that is not normal"
-            answer="The graph on the left has this property, as an orientation like one on the right, where the entire graph itself is a clique, does not contain a kernel" answer-attachments="jjE1tEMGAs.png"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a fully connected graph where every orientation is normal, with more than 2 vertices"
-            answer="No such graph exists. You can prove this by showing that on a fully connected graph of more than 2 vertices it is possible to direct the edges such that no vertex has an indegree of $n - 1$. This simple to show as suppose that we select any vertex v in the graph, and have at least one edge be outgoing from the vertex, leaving a nonzero number of edges going into the vertex. For any other vertex in the graph, it will be missing an incoming edge from vertex $v$, so no kernel exists in the graph."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a graph that is solvable"
-            answer="Some examples:
-            - A fully connected graph (even on no vertices). As the graph is fully connected, every orientation is itself a clique (except in the case of an empty graph), and considering cliques which contain a kernel, the kernel of the clique is a kernel for the entire graph as well
-            - A graph on more than 1 vertex that contains no edges"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a graph which is not solvable"
-            answer="Flower snark:
-            Every orientation has a clique of number of vertices at most 2, and for cliques of size 2 or less the edges can be directed in any way and the clique can still have a kernel--so if we can show that for any orientation of this graph, no kernel exists, we will have disproved that it is solvable. It's easiest to work with the second picture, and simply direct the arrows in a circle. So all edges from pink to blue are directed with the tail at pink and head at blue, tail at blue and head at green and so on.  This way, there is no way to choose an independent set where all the vertices outside of that set have an edge to at least one vertex in that independent set. We are forced to pick all the vertices in the graph and that does not form an independent set." answer-attachments="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Graph_homomorphism_into_C5.svg/260px-Graph_homomorphism_into_C5.svg.png"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a connected graph which is not solvable"
-            answer="Flower snark" answer-attachments="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Graph_homomorphism_into_C5.svg/260px-Graph_homomorphism_into_C5.svg.png"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a disconnected graph which is solvable"
-            answer="A graph that consists of more than 1 vertex and has no edges."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Give an example of a disconnected graph which is not solvable"
-            answer="A graph that contains more than 1 non empty disjoint independent sets where at least one of the independent sets contains more than 1 vertex.  There is no way to define a kernel for this graph"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is every disconnected graph solvable?"
-            answer="No"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is every connected graph solvable?"
-            answer="No"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is an empty graph (no vertices) solvable?"
-            answer="Yes; it is vacuously solvable because the set of normal orientations of a graph that is empty consists of just 1 element (the empty graph) and a  kernel containing no vertices for it can be defined"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the size of the set of normal orientations of a graph that contains no vertices?"
-            answer="1"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the size of the set of normal orientations of a graph that contains 1 vertex and no self loops?"
-            answer="1"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the size of the set of normal orientations of a graph that contains 1 vertex and self loops?"
-            answer="1"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does every normal graph have a kernel?"
-            answer="No; Consider a graph where there are 2 vertices and no edges.  Every clique, which always consists of 1 vertex, has a kernel (namely itself), but the entire graph does not have a kernel."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does every normal disconnected graph have a kernel?"
-            answer="No; Consider a graph where there are 2 vertices and no edges.  Every clique, which always consists of 1 vertex, has a kernel (namely itself), but the entire graph does not have a kernel."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Does every normal connected graph have a kernel?"
-            answer="No; Some examples:
-            - consider a graph that has 3 vertices A,B,C in a line where A->B is an edge, B->C is an edge.  Every clique does have a kernel but the entire graph does not        
-            " answer-attachments="YTYsACkfRy.png"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Can you find a directed graph that is normal such that deleting a vertex from the graph becomes a non normal graph?"
-            answer="No; Every vertex in a graph is part of at least one clique (where a clique can be empty, or contain 1 or 2 vertices or more). Removing any vertex v from the graph won't cause the clique C it is part of to not have a kernel anymore (because C will continue to be a clique, and the definition of a normal graph is that *every* clique has a kernel, so this includes C with v removed).  Removing a vertex from the graph won't *introduce* any more cliques either because no edges are added to the graph that could change non cliques to cliques."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Can you find a directed graph that is normal such that deleting a vertex from the graph continues to be a normal graph?"
-            answer="A very simple example is a graph that is itself a clique--deleting any one vertex from the graph will result in the graph being a clique"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Can you find a directed graph that is not normal such that deleting a vertex from the graph becomes a normal graph?"
-            answer="Yes; just consider a graph with 3 vertices where the connections between them form the shape of a recycling sign.  Deleting any one vertex will result in a normal graph"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Can you find a directed graph that is not normal such that deleting a vertex from the graph continues to be a non normal graph?"
-            answer="Delete the red vertex" answer-attachments="7dhpI6rzyk.png"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Show (or disprove) that every normal graph G with a kernel K, where if any vertex is deleted and the graph continues to be normal, that this graph will continue to have a kernel."
-            answer="Suppose the vertex v that is deleted is part of K.  For every v' in G that had an edge v'->v that also doesn't have an outgoing edge to any other elements of K, add v' to the kernel set, which will preserve independence of the kernel set."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Show (or disprove) that for every non normal graph G without a kernel, if a vertex is deleted from G such that the graph is normal, that it will have a kernel."
-            answer="Remove the top vertex and see the result" answer-attachments="HXaH7ielyC.png"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Count the number of normal orientations on this graph" question-attachments="nfGib0qEfF.png"
-            answer="" answer-attachments="bQtUc5lAXz.png"
-            ></orbit-prompt>
-      </orbit-reviewarea>
-      <h2 id="problems">Problems
-        <a href="#toc" class="heading-marker">↩︎</a></h2>   
-      <orbit-reviewarea color="turquoise" debug>
-        <orbit-prompt
-        question="Proving Corrolary 2.2 in Galvin's paper from Lemma 2.1--How can you prove that if '$D$ is a digraph, with maximum outdegree $n - 1$, in which every induced subdigraph has a kernel. Then $D$ is (kn: k)-choosable for every $k$' from '$D$ is a digraph in with every induced subdigraph has a kernel. If $f,g: V(D) \to \mathbb{N}$ are such that $f(v) \ge \sum_{u \in N[v]} g(u)$ whenever $g(v) > 0$, then $D$ is (f:g)-choosable' where $N[v]$ is the closed neighborhood of $v$?"
-        answer="Corrolary 2.2 follows from the fact that for every $v$, $f(v) = kn \ge k*(n-1) \ge \sum_{u \in N[v]} g(u)$ as $|N(v)| \le n - 1$ (the outdegree of every vertex is at most $n - 1$) where $f(v)$ and $g(v)$ are the constants $kn$, and $k$ respectively, for ever vertex $v$. "
-        ></orbit-prompt>
-        <orbit-prompt
-        question="Does the set consisting of the selected vertices in yellow form the kernel of every normal orientation of this graph?" question-attachments="xybgJLrlmn.png" 
-        answer="No; Let us consider an orientation of this graph where both black and pink edges from the 'middle ring' (where 'middle ring' here is defined as the 6 vertices selected in yellow) to the 'inner ring' (where 'inner ring' is defined to be the three vertices in the center of the middle)  are pointing towards the inner ring--so the vertex in the inner ring in the top-left of the triangle (henceforth called vertex 'T') has four incoming edges from the middle ring.  This is a normal orientation for the graph--the four affected edges, two black and two pink, are edges within exactly one clique of size 3 (and of course the trivial cliques consisting of an edge), and each have a kernel consisting of T.  But T has no outgoing edge towards any of the vertices in the middle ring, so the middle ring can't be a kernel for this graph. "
-        ></orbit-prompt>
-      </orbit-reviewarea>        
-
-      <h2 id="challenge-problems">Challenge Problems
-        <a href="#toc" class="heading-marker">↩︎</a></h2>         
-      <orbit-reviewarea color="turquoise" debug>
-         <orbit-prompt
-            question="How can Dinitz' conjecture be reframed using some or all combination of the terms: (f:g)-choosability, chromatic number, chromatic index?"
-            answer="Dinitz' conjecture is: 'Is it true, that for any graph $D$ where there are $n^2$ vertices are laid out as grid points on a square, and for any vertex in row $i$ column $j$, $v_{ij}$ has edges to every $v_{kj}$ and $v_{il}$ for every $k,l$ in the set ${1..n}$ excluding $i$ and $j$, respectively, and a random subset $C_{sub_v}$ sized $n$, drawn out of a constant $m$ sized set (where $m \ge n$) of colors, it is possible to choose a color $c_v$ and assign it to $v$, out of each $C_{sub_v}$, such that $D$ is colorable using the set formed by the set of $c_v$?'
-            Since $D$ can be also seen as any orientation of the line graph of the bipartite graph $K_{n,n}$, if we were to show that $D$ is n-choosable (aka (f:g)-choosable for constant functions f and g assigning $n$ and 1 to each vertex, respectively), then we will have proven the Dinitz conjecture. This is because if we can show that out of an *infinite number of colors*, drawing $n$ colors randomly and assigning to each vertex of $D$ and showing a vertex can be selected out of each of the lists in a graph colorable way, then we will have *immediately* shown this result for drawing $n$ colors out of $m$ colors where $m \ge n$."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What is the chromatic index of $K_{n,n}$?"
-            answer="n; this can be shown inductively. Suppose you have a graph of n nodes that is fully connected.  We can show inductively on the node number, that if the first i nodes all have different colors, we must select a color distinct from the first i for the i+1 st node. Now that you have shown it is possible to color a fully connected graph of n nodes with n colors, then if you see the line graph of $K_{n,n}$, n as an $n \times n$ grid, just displace the next row’s colors by 1, and keep doing for each row. You can see that each column and row will have n distinct colors."
-            ></orbit-prompt>
-      </orbit-reviewarea>
-      
-      <p>Lemma 2.1 is essential in proving the Dinitz conjecture in Galvin's paper.  Lemma 2.1 in Galvin's paper states: "Let \(D\) be a digraph in which every induced subdigraph has a kernel.  If \(f,g : V(D) \to \mathbb{N}\) are such that \(f(v) \ge \sum_{u \in N[v]} g(u)\) whenever \(g(v) > 0\), then \(D\) is (f:g)-choosable". Below is the body of the proof and some exercises based on it to exercise your thinking!</p>
-      <p>Let \(V = V(D)\). We use induction on \(\sum_{v \in V} g(v)\). Let \(W = \{v \in V: g(v) > 0\}\). Let sets \(A_v\) (for \(v \in V\) with \(|A_v| = f(v)\) be given. Choose any \(c\) in \(C = \cup_{v \in W} A_v\).  Let \(S = {v \in W: c \in A_v}\). Let \(K\) be a kernel of \(S\).  Define \(g': V \to \mathbb{N}\) by setting \(g'(v) = g(v) - 1\) for \(v \in K\), and \(g'(v) = g(v)\) for \(v \notin K\), and let \(f'(v) = |A_v\setminus\{c\}|\).  Then \(\sum_{v \in V} g'(v) < \sum_{v \in V} g(v)\) and \(f'(v) \ge \sum_{u \in N[v]} g'(u)\) whenever \(g'(v) > 0\). By the induction hypothesis, \(D\) is (f':g')-choosable.  Thus there are sets \(B'_u\) and \(B'_v\) that are subsets of \(A_u\setminus\{c\}\) and \(A_v\setminus\{c\}\), respectively, such that for any \(u\) and \(v\) that share an edge, \(B'_u \cap B'_v\) is empty.  If we can show that adding back a color to the appropriate \(B'\) sets will result in every \(v\) being assigned a subset \(B'_v\) that has size \(g(v)\) and is a subset of \(A_v\), then we will have shown that \(D\) is (f:g)-choosable.  Define sets \(B_v\) by setting \(B_v = B'_v \cup \{c\}\) if \(v \in K\), and \(B_v = B'_v\) otherwise.  Then \(|B_v| = g(v)\) for every \(v \in V\), and \(B_u \cap B_v\) is empty if \(u\) and \(v\) share an edge.</p>
-      <orbit-reviewarea color="turquoise" debug>
-         <orbit-prompt
-            question="What does the set $W$ represent?"
-            answer="It is the set of vertices with $g(v) > 0$"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What does the set $C$ represent?"
-            answer="It is the union of all the colors assigned to the vertices in $W$"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="What does the set $S$ represent?"
-            answer="$S$ is a subset of the vertices of $W$, where each element $v \in S$ also contains color $c$ in its list of $A_v$ colors."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Can $K$ be empty?"
-            answer="No;  As every induced subgraph of $D$ has a kernel, and $S$ is a non empty graph by the way we specified it, $K$ is not empty."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Is $f'(v) = |A_v\setminus\{c\}|?$"
-            answer="Yes"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Why is the inequality strict between the sums of $g(v)$ and $g'(v)$ over all the vertices in the graph?"
-            answer="This is because K is not empty, so for at least one $v$, $g'(v) < g(v)$"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Why does it follow from the previous results that $f'(v) \ge \sum_{u \in N[v]} g'(u)$ whenever $g'(v) > 0$?"
-            answer="The only interesting case we need to consider is when $v \in S$, and $g'(v) > 0$, otherwise the inequality follows immediately from the premises as $f'(v) = f(v)$ and $g'(v) = g(v)$ for all $v \notin S$ and would be true as any natural number is \ge 0$, respectively.  If $v \in K$, and $g'(v) > 0$, then  $\sum_{u \in N[v]} (g(u) - g'(u)) = 1$, as no vertices in the kernel have edges to each other so the only $u \in N[v]$ where $g'(u) = g(u) - 1$ is when $u = v$ (as $N[v]$ is the *closed neighborhood* of $v$, namely, it includes $v$). $f(v) - f'(v) = 1$ as well given the type of vertex $v$ is. So $f'(v) >= \sum_{u \in N[v]} g'(u)$.  If $v \notin in K$ but is in $S$, and $g'(v) > 0$, then $f'(v) = f(v) - 1$ as well, but the amount that $\sum_{u \in N[v]} g(u)$ differs from $$\sum_{u \in N[v]} g'(u)$$ is the size of $K$, which we have shown in an earlier card in this set to be at least 1.  Thus the inequality holds $f'(v) >= \sum_{u \in N[v]} g'(u)$"
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Why can the induction hypothesis be invoked based on the value of $\sum_{v \in V} g'(v)$?"
-            answer="It can be invoked because $\sum_{v \in V} g'(v) < \sum_{v \in V} g(v)$ "
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Explain why we only need to consider adding back vertices to the $B'$ lists selected such that $D$ is (f':g')-choosable, to show that $D$ is also (f:g)-choosable."
-            answer="the $B'$ sets are drawn from $A_v\setminus\{c\}$, so all we need to do is to add back to the $B'$ sets that are missing $c$ is none other than the set $\{c\}$."
-            ></orbit-prompt>
-         <orbit-prompt
-            question="Why are we adding back the color $c$ to all the $B'_v$ associated with $v \in  K$, only?"
-            answer="For every vertex $v$ in $K$, $B'_v$ is of size $g(v) - 1$ by how we defined $g'(v)$.  For every other vertex in the graph, including the remaining ones in $S$, $g(v) = g'(v)$.  Further, none of the $B'$ sets assigned to any of the vertices in the graph as per the induction hypothesis, contain $c$ (as we defined $f'(v) = |A_v\setminus\{c\}|$ and used this size to draw $B'$ sets from).  So as none of the vertices in $K$ share an edge, we can add back $c$ to each $B'_v$ only if $v \in K$.  "
-            ></orbit-prompt>
-      </orbit-reviewarea>
-      Now try giving the paper another look and see if the below makes sense regarding how to prove the main result of the paper!
-      <p>The result of "every line graph of a multigraph is solvable iff it is perfect" is used as the first step to prove the Dinitz conjecture. It is shown in an earlier result (which is one of my open questions/areas to explore, that is clearly explained in that is covered in Maffray's paper), that the line graph of the bipartite graph \(K_{n,n}\), is perfect. The statement "every line graph of a multigraph is perfect" is equivalent to 
-      <ul>
-         <li>"every perfect line graph is solvable" (by Maffray's theorem)
-         <li>"every line graph of a multigraph has the property that every induced subgraph is solvable"  (this is by the fact that "every induced subgraph of a solvable graph G, is solvable", which is an "open question" of mine)</li>
-         <li>"every line graph of a multigraph has the property that every induced subgraph's normal orientations contain a kernel" (definition of solvable)</li>
-         <li>"if D is a normal orientation of the line graph of \(K_{n,n}\), then as the underlying graph of D is solvable, every induced subgraph of D contains a kernel"  (this is by "every induced subgraph of a normal graph, is normal" and by the definition of solvable that states that "every normal orientation contains a kernel"--collectively these two statements imply that every induced subgraph of D is normal, and thus has a kernel)</li>
-      </ul>
-      Then, as can be seen in Theorem 4.1 in the paper, we can very cleverly choose a particular orientation D of the line graph of \(K_{n,n}\) for which it is convenient to show that D is normal, show that D has the property that the maximum outdegree for any vertex in D is n - 1, and invoke Lemma 2.1 to show that D is n-choosable.  Note that by showing that *any particular orientation* of the line graph of \(K_{n,n}\) is n-choosable, we will have proved Dinitz' conjecture--this is because the definition of n-choosable invokes the property of two vertices sharing an edge in *any particular direction*. </p>
-      <h2 id="open-questions">My open questions
-        <a href="#toc" class="heading-marker">↩︎</a></h2>   
-      <ul>
-         <li>Why is a clique defined to be non empty?</li>
-         <li>
-            (Maffray&#39;s theorem)
-            <ul>
-               <li>Why is it the case that the line graph of a multigraph (a graph with potentially multiple edges between the same pair of vertices) is perfect iff it is solvable? </li>
-            </ul>
-         </li>
-         <li>How do you visualize the kernel of any graph? Right now the only cases I know how to in are when the graph is fully connected (where the kernel must consist of just 1 vertex)</li>
-         <li>
-            How do you determine if the vertices of a graph can be partitioned into sets, where each element of the partition  must contain more than 1 element and contains vertices that form an independent set?
-            <ul>
-               <li>For example this is not possible for a fully connected graph </li>
-               <li>
-                  However you can see that in the graph below, you can partition the vertices into 5 sets containing 4 vertices each
-                  <ul>
-                     <li><img src="QBtqZJYudG.png" alt=""></li>
-                  </ul>
-               </li>
-            </ul>
-         </li>
-         <li>Show (or disprove) that every non normal orientation \(N\) of a solvable graph \(G\), where if any vertex is deleted from \(N\) and the graph becomes normal, that \(N\) will have a kernel.</li>
-         <li>Can you find an undirected graph \(G\) where the size of the set of its normal orientations will increase if one of \(G\)&#39;s vertices are removed?</li>
-         <li>Is this graph solvable?<ul><li<img src="https://quantum-journal.org/wp-content/uploads/2020/06/LineGraphofK6QuantumCover.png" alt=""></li></ul></li>
-         <li>How do you show that the line graph of the bipartite graph \(K_{n,n}\), is &quot;perfect&quot;?</li>
-         <li>
-            Prove that every induced subgraph of a solvable graph \(G\), solvable
-            <ul>
-               <li>Below is my attempted proof sketch with the sub bullets under 1) and 2) remaining unsolved by me.</li>
-               <li>A solvable graph is one where every normal orientation has a kernel--a &quot;normal orientation&quot; of an undirected graph, is one where adding directed edges between any two vertices \(u\) and \(v\) with an edge in the undirected graph, will result in a directed graph (digraph) such that every clique has a kernel.  </li>
-               <li>
-                  We will consider the set of normal orientations on a graph missing any particular vertex \(v\) from \(G\) (with all the incident edges to \(v\) removed as well), and show that for every element in this set, the normal orientation \(N\) contains a kernel. Thus we will have shown that removing any \(v\) will result in a solvable subgraph, and we can extend this process recursively by removing any number of vertices. There are two cases on the type of \(N\), and below each case is the intermediate result used to prove the case:
-                  <ul>
-                     <li>
-                        1) there exists a normal orientation \(M\) of \(G\) such that removing \(v\) results in \(N\).
-                        <ul>
-                           <li>Show (or disprove) that every normal graph \(G\) with a kernel \(K\), where if any vertex is deleted and the graph continues to be normal, that this graph will continue to have a kernel.</li>
-                        </ul>
-                     </li>
-                     <li>
-                        2) there exists a non normal orientation \(M\) of \(G\) such that removing \(v\) results in \(N\). 
-                        <ul>
-                           <li>Show (or disprove) that every non normal orientation N of a solvable graph \(G\), where if any vertex is deleted from \(N\) and the graph becomes normal, that \(N\) will have a kernel.</li>
-                        </ul>
-                     </li>
-                  </ul>
-               </li>
-            </ul>
-         </li>
-         <li>Why is the &quot;stable marriage theorem&quot; able to be restated as the line graph of \(K_{n,n}\) is solvable?</li>
-      </ul>
+               question="What is the line graph of a graph $G$?"
+               answer="This is a graph, denoted $L(G)$, defined by using the edges of $G$ as vertices, and drawing an edge between two vertices in $L(G)$ if the corresponding edges in G share a vertex"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the term digraph short for?"
+               answer="A graph with directed edges"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the notation $K_{n,n}$ short hand for? What type of graph does it represent"
+               answer="$K_{n,n}$ is a graph that two sets $A$ and $B$ each with $n$ vertices such that for every $a \in A$, it has an edge to every $b \in B$, and there are no edges between vertices in A, and B, respectively). The type of graph it represents is a bipartite graph."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the definition of the 'underlying graph' of a directed graph?"
+               answer="The underlying graph of a directed graph is an undirected graph where every directed edge is converted to an undirected edge and if there are multiple edges between vertices, it is collapsed into one edge"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is the underlying graph of a directed graph $G$, directed or undirected?"
+               answer="undirected"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is the orientation of a graph $G$, directed or undirected?"
+               answer="directed"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the kernel of a directed graph $G$ defined to be as per Galvin's notation?"
+               answer="The kernel of a graph, denoted $K$, is an independent subset (independent set means none of the vertices have any edges between each other) of its vertices such that for every v in V\K, there is a vertex $u \in K$ such that there is an edge $v \to u$ in $G$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the definition of an 'independent set' of a graph $G$?"
+               answer="An independent set $S$ is a subset of the vertices of $G$ such that for any two vertices $u$ and $v$ in $S$, there does not exist an edge in either direction between $u$ and $v$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can the kernel of a directed graph be empty?"
+               answer="Yes"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the 'closed neighborhood' of a vertex in a directed graph defined to be as per Galvin's notation?"
+               answer="The closed neighborhood of a vertex $v$, denoted $N[v]$, is ${u: v \to u or v = u}$ where $v \to u$ means 'there is a directed edge from $v$ to $u$', aka all the vertices including $v$ and that have an edge OUT OF $v$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is an 'induced subgraph' of a graph $G$?"
+               answer="An induced subgraph of a graph $G$ is defined as taking any subset $S$ of the vertices of $G$, and retaining all the edges that exist between elements of $S$ in $G$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is every subgraph an 'induced subgraph'? "
+               answer="No; every induced subgraph is a subgraph, but there may be subgraphs that have deleted edges between vertices that existed in the original graph"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="How does Galvin define a clique of a digraph $G$?"
+               answer="A clique is a non empty subset of the vertices of $G$ such that every pair of vertices in the clique is connected by an edge in at least one direction"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can a clique in a graph be empty, as per the definition of a clique?"
+               answer="No"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="How does Galvin define the whether a digraph is normal?"
+               answer="A digraph is normal if every clique in the digraph has a kernel"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="How does Galvin define an orientation of a graph $G$?"
+               answer="An orientation of  $G$, denoted $O(G)$, is any graph that has $G$ as its underlying graph. (the definition of underlying graph is covered in another card)"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="How does Galvin define a solvable graph?"
+               answer="A solvable graph is one in which every normal orientation has a kernel. Note that it is *not* one where every orientation is normal."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does the definition of an 'underlying graph of a graph $G$' as per Galvin's paper apply to a directed or undirected graph G?"
+               answer="directed"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does the definition of a graph $H$ that is the 'underlying graph of a graph $G$' as per Galvin's paper apply to a directed or undirected graph $H$?"
+               answer="undirected"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does the definition of a graph $H$ that is the 'underlying graph of a graph $G$' as per Galvin's paper apply to a directed or undirected graph $G$?"
+               answer="directed"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does the definition of a clique as per Galvin's paper apply to a directed or undirected graph?"
+               answer="directed"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does the definition of an orientation as per Galvin's paper apply to a directed or undirected graph?"
+               answer="undirected"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does the definition of solvable as per Galvin's paper apply to a directed or undirected graph?"
+               answer="undirected"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the definition of a connected graph (for undirected graphs)?"
+               answer="A connected graph is one where for any pair of vertices $u$ and $v$, there is a path following the edges in the graph from $u$ to $v$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the definition of a perfect graph as per Galvin's paper?" answer-attachments="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Paley9-perfect.svg/800px-Paley9-perfect.svg.png"
+               answer="A perfect graph is defined on an undirected graph and as one where every induced subgraph of the graph has the property that the size of its largest clique is the chromatic number of the subgraph
+               Example: "
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What type of graphs (directed or undirected) is a perfect graph defined on as per Galvin's paper?"
+               answer="undirected graphs"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What does it mean for a set $K$ of vertices to absorb a vertex $v$?"
+               answer="$K$ absorbs a vertex $v$ if $N[v] \cap K =  \emptyset$"
+               ></orbit-prompt>
+         </orbit-reviewarea>
+         <h2 id="beginner-problems">Beginner problems
+            <a href="#toc" class="heading-marker">↩︎</a>
+         </h2>
+         <orbit-reviewarea color="turquoise" debug>
+            <orbit-prompt
+               question="Is a graph with only 1 vertex and no edges, 1-choosable?"
+               answer="Yes, if there are no self edges"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is a graph with 1 vertex and self edges 0-choosable?"
+               answer="Yes, because the empty set intersected with any set if empty"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is a graph with 1 vertex and self edges 1-choosable?"
+               answer="No--1-choosability fails when we let $u = v$, and since an edge exists between $u$ and $v$, and the only way to select a 1-sized subset of a singleton set is to use the set itself, and a nonempty set intersected with itself is not disjoint"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is a graph with 1 vertex and self edges $n$-choosable where $n > 1$?"
+               answer="yes; there is a way to select two disjoint singleton subsets of a set with more than 1 element."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the chromatic number of a bipartite graph $K_{n,n}$?"
+               answer="2"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="For which graphs is the chromatic number infinity?"
+               answer="Any graph with self loops"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="If you have a directed graph $G$, and it is (f:g)-choosable for some functions $f,g: V \to \mathbb{N}$, is the underlying graph of $G$ also (f:g)-choosable?"
+               answer="Yes; as to test whether a graph is (f:g)-choosable is invariant of the direction of the edges in the graph."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is an example of a directed graph that doesn't have any kernel?"
+               answer="A graph with more than one vertex that has no edges in the graph"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is an example of a directed graph that has a kernel?"
+               answer="Some examples:
+               - A graph with no vertices or only 1 vertex (vacuously has a kernel). 
+               - A graph $G$ where there exists a vertex $v$ such that for every other vertex $u$ in the graph, the edge $u \to v$ exists in $G$."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does a normal digraph have a clique with a kernel that consists of more than one vertex?"
+               answer="No; A normal graph by definition has every clique consist of a kernel--as a clique consists of vertices where very pair of vertices has an edge in at least one direction, there is no way to choose an independent subset of the clique that consists of more than one vertex"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the underlying graph of a graph 2 vertices connected by a directed edge?"
+               answer="It is a graph with the vertices with the directed edge converted to non directed edge"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the size of the set of orientations of a fully connected graph on 3 vertices, without relabeling?"
+               answer="8"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is a graph with only one vertex always normal?"
+               answer="Yes; it is vacuously true that every clique (where the only possible one in such a graph has one vertex) is normal as you can choose the kernel to just consists of the vertex"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is a graph with no vertices normal?"
+               answer="Yes; it is vacuously true because there is no clique in the graph"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is a graph with at least one vertex, but no edges, normal?"
+               answer="Yes; the only cliques that exists in the graph are singleton sets consisting of each vertex and a graph consisting of one vertex is normal"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Give an example of a directed graph that is not normal" answer-attachments="XbMIiR1oPs.png"
+               answer=""
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is this graph normal?" question-attachments="gqxn8_OO03.png" 
+               answer="Yes"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is this graph normal?" question-attachments="7CGwo68HSq.png" 
+               answer="Yes"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is this graph normal?" question-attachments="c61qX9x89x.png" 
+               answer="Yes"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can adding edges to a directed graph that is normal, change it to a not normal graph? If so give an example"
+               answer="No; Adding extra edges to a graph won't change whether every clique in the graph has a kernel or not"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can adding edges to a directed graph that is not normal, change it to a  normal graph? If so give an example?" answer-attachments="7GChs1uNMz.png" 
+               answer="The edges in red are the added edges changing the graph on vertices $A,B,C$ to a normal graph"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Give an example of a graph where every orientation is normal."
+               answer="A graph with two vertices that is connected by an edge. Any way the edge is oriented or whether another edge is added in an other direction, the clique formed by two vertices has a kernel"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Give an example of a graph where an orientation exists that is not normal"
+               answer="The graph on the left has this property, as an orientation like one on the right, where the entire graph itself is a clique, does not contain a kernel" answer-attachments="jjE1tEMGAs.png"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Give an example of a fully connected graph where every orientation is normal, with more than 2 vertices"
+               answer="No such graph exists. You can prove this by showing that on a fully connected graph of more than 2 vertices it is possible to direct the edges such that no vertex has an indegree of $n - 1$. This simple to show as suppose that we select any vertex v in the graph, and have at least one edge be outgoing from the vertex, leaving a nonzero number of edges going into the vertex. For any other vertex in the graph, it will be missing an incoming edge from vertex $v$, so no kernel exists in the graph."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Give an example of a graph that is solvable"
+               answer="Some examples:
+               - A fully connected graph (even on no vertices). As the graph is fully connected, every orientation is itself a clique (except in the case of an empty graph), and considering cliques which contain a kernel, the kernel of the clique is a kernel for the entire graph as well
+               - A graph on more than 1 vertex that contains no edges"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Give an example of a connected graph which is not solvable"
+               answer="Flower snark" answer-attachments="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Graph_homomorphism_into_C5.svg/260px-Graph_homomorphism_into_C5.svg.png"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Give an example of a disconnected graph which is solvable"
+               answer="A graph that consists of more than 1 vertex and has no edges."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Give an example of a disconnected graph which is not solvable"
+               answer="A graph that contains more than 1 non empty disjoint independent sets where at least one of the independent sets contains more than 1 vertex.  There is no way to define a kernel for this graph"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is every disconnected graph solvable?"
+               answer="No"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is every connected graph solvable?"
+               answer="No"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is an empty graph (no vertices) solvable?"
+               answer="Yes; it is vacuously solvable because the set of normal orientations of a graph that is empty consists of just 1 element (the empty graph) and a  kernel containing no vertices for it can be defined"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the size of the set of normal orientations of a graph that contains no vertices?"
+               answer="1"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the size of the set of normal orientations of a graph that contains 1 vertex and no self loops?"
+               answer="1"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the size of the set of normal orientations of a graph that contains 1 vertex and self loops?"
+               answer="1"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does every normal graph have a kernel?"
+               answer="No; Consider a graph where there are 2 vertices and no edges.  Every clique, which always consists of 1 vertex, has a kernel (namely itself), but the entire graph does not have a kernel."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does every normal disconnected graph have a kernel?"
+               answer="No; Consider a graph where there are 2 vertices and no edges.  Every clique, which always consists of 1 vertex, has a kernel (namely itself), but the entire graph does not have a kernel."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does every normal connected graph have a kernel?"
+               answer="No; Some examples:
+               - consider a graph that has 3 vertices A,B,C in a line where A->B is an edge, B->C is an edge.  Every clique does have a kernel but the entire graph does not        
+               " answer-attachments="YTYsACkfRy.png"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can you find a directed graph that is normal such that deleting a vertex from the graph becomes a non normal graph?"
+               answer="No; Every vertex in a graph is part of at least one clique (where a clique can be empty, or contain 1 or 2 vertices or more). Removing any vertex v from the graph won't cause the clique C it is part of to not have a kernel anymore (because C will continue to be a clique, and the definition of a normal graph is that *every* clique has a kernel, so this includes C with v removed).  Removing a vertex from the graph won't *introduce* any more cliques either because no edges are added to the graph that could change non cliques to cliques."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can you find a directed graph that is normal such that deleting a vertex from the graph continues to be a normal graph?"
+               answer="A very simple example is a graph that is itself a clique--deleting any one vertex from the graph will result in the graph being a clique"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can you find a directed graph that is not normal such that deleting a vertex from the graph becomes a normal graph?"
+               answer="Yes; just consider a graph with 3 vertices where the connections between them form the shape of a recycling sign.  Deleting any one vertex will result in a normal graph"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can you find a directed graph that is not normal such that deleting a vertex from the graph continues to be a non normal graph?"
+               answer="Delete the red vertex" answer-attachments="7dhpI6rzyk.png"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Show (or disprove) that every normal graph G with a kernel K, where if any vertex is deleted and the graph continues to be normal, that this graph will continue to have a kernel."
+               answer="Suppose the vertex v that is deleted is part of K.  For every v' in G that had an edge v'->v that also doesn't have an outgoing edge to any other elements of K, add v' to the kernel set, which will preserve independence of the kernel set."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Show (or disprove) that for every non normal graph G without a kernel, if a vertex is deleted from G such that the graph is normal, that it will have a kernel."
+               answer="Remove the top vertex and see the result" answer-attachments="HXaH7ielyC.png"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Count the number of normal orientations on this graph" question-attachments="nfGib0qEfF.png"
+               answer="" answer-attachments="bQtUc5lAXz.png"
+               ></orbit-prompt>
+         </orbit-reviewarea>
+         <h2 id="problems">Problems
+            <a href="#toc" class="heading-marker">↩︎</a>
+         </h2>
+         <orbit-reviewarea color="turquoise" debug>
+            <orbit-prompt
+               question="Give an example of a graph which is not solvable"
+               answer="Flower snark:
+               Every orientation has a clique of number of vertices at most 2, and for cliques of size 2 or less the edges can be directed in any way and the clique can still have a kernel--so if we can show that for any orientation of this graph, no kernel exists, we will have disproved that it is solvable. It's easiest to work with the second picture, and simply direct the arrows in a circle. So all edges from pink to blue are directed with the tail at pink and head at blue, tail at blue and head at green and so on.  This way, there is no way to choose an independent set where all the vertices outside of that set have an edge to at least one vertex in that independent set. We are forced to pick all the vertices in the graph and that does not form an independent set." answer-attachments="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Graph_homomorphism_into_C5.svg/260px-Graph_homomorphism_into_C5.svg.png"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Proving Corrolary 2.2 in Galvin's paper from Lemma 2.1--How can you prove that if '$D$ is a digraph, with maximum outdegree $n - 1$, in which every induced subdigraph has a kernel. Then $D$ is (kn: k)-choosable for every $k$' from '$D$ is a digraph in with every induced subdigraph has a kernel. If $f,g: V(D) \to \mathbb{N}$ are such that $f(v) \ge \sum_{u \in N[v]} g(u)$ whenever $g(v) > 0$, then $D$ is (f:g)-choosable' where $N[v]$ is the closed neighborhood of $v$?"
+               answer="Corrolary 2.2 follows from the fact that for every $v$, $f(v) = kn \ge k*(n-1) \ge \sum_{u \in N[v]} g(u)$ as $|N(v)| \le n - 1$ (the outdegree of every vertex is at most $n - 1$) where $f(v)$ and $g(v)$ are the constants $kn$, and $k$ respectively, for ever vertex $v$. "
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Does the set consisting of the selected vertices in yellow form the kernel of every normal orientation of this graph?" question-attachments="xybgJLrlmn.png" 
+               answer="No; Let us consider an orientation of this graph where both black and pink edges from the 'middle ring' (where 'middle ring' here is defined as the 6 vertices selected in yellow) to the 'inner ring' (where 'inner ring' is defined to be the three vertices in the center of the middle)  are pointing towards the inner ring--so the vertex in the inner ring in the top-left of the triangle (henceforth called vertex 'T') has four incoming edges from the middle ring.  This is a normal orientation for the graph--the four affected edges, two black and two pink, are edges within exactly one clique of size 3 (and of course the trivial cliques consisting of an edge), and each have a kernel consisting of T.  But T has no outgoing edge towards any of the vertices in the middle ring, so the middle ring can't be a kernel for this graph. "
+               ></orbit-prompt>
+         </orbit-reviewarea>
+         <h2 id="challenge-problems">Challenge Problems
+            <a href="#toc" class="heading-marker">↩︎</a>
+         </h2>
+         <orbit-reviewarea color="turquoise" debug>
+            <orbit-prompt
+               question="How can Dinitz' conjecture be reframed using some or all combination of the terms: (f:g)-choosability, chromatic number, chromatic index?"
+               answer="Dinitz' conjecture is: 'Is it true, that for any graph $D$ where there are $n^2$ vertices are laid out as grid points on a square, and for any vertex in row $i$ column $j$, $v_{ij}$ has edges to every $v_{kj}$ and $v_{il}$ for every $k,l$ in the set ${1..n}$ excluding $i$ and $j$, respectively, and a random subset $C_{sub_v}$ sized $n$, drawn out of a constant $m$ sized set (where $m \ge n$) of colors, it is possible to choose a color $c_v$ and assign it to $v$, out of each $C_{sub_v}$, such that $D$ is colorable using the set formed by the set of $c_v$?'
+               Since $D$ can be also seen as any orientation of the line graph of the bipartite graph $K_{n,n}$, if we were to show that $D$ is n-choosable (aka (f:g)-choosable for constant functions f and g assigning $n$ and 1 to each vertex, respectively), then we will have proven the Dinitz conjecture. This is because if we can show that out of an *infinite number of colors*, drawing $n$ colors randomly and assigning to each vertex of $D$ and showing a vertex can be selected out of each of the lists in a graph colorable way, then we will have *immediately* shown this result for drawing $n$ colors out of $m$ colors where $m \ge n$."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What is the chromatic index of $K_{n,n}$?"
+               answer="n; this can be shown inductively. Suppose you have a graph of n nodes that is fully connected.  We can show inductively on the node number, that if the first i nodes all have different colors, we must select a color distinct from the first i for the i+1 st node. Now that you have shown it is possible to color a fully connected graph of n nodes with n colors, then if you see the line graph of $K_{n,n}$, n as an $n \times n$ grid, just displace the next row’s colors by 1, and keep doing for each row. You can see that each column and row will have n distinct colors."
+               ></orbit-prompt>
+         </orbit-reviewarea>
+         <p>Lemma 2.1 is essential in proving the Dinitz conjecture in Galvin's paper.  Lemma 2.1 in Galvin's paper states: "Let \(D\) be a digraph in which every induced subdigraph has a kernel.  If \(f,g : V(D) \to \mathbb{N}\) are such that \(f(v) \ge \sum_{u \in N[v]} g(u)\) whenever \(g(v) > 0\), then \(D\) is (f:g)-choosable". Below is the body of the proof and some exercises based on it to exercise your thinking!</p>
+         <p>Let \(V = V(D)\). We use induction on \(\sum_{v \in V} g(v)\). Let \(W = \{v \in V: g(v) > 0\}\). Let sets \(A_v\) (for \(v \in V\) with \(|A_v| = f(v)\) be given. Choose any \(c\) in \(C = \cup_{v \in W} A_v\).  Let \(S = {v \in W: c \in A_v}\). Let \(K\) be a kernel of \(S\).  Define \(g': V \to \mathbb{N}\) by setting \(g'(v) = g(v) - 1\) for \(v \in K\), and \(g'(v) = g(v)\) for \(v \notin K\), and let \(f'(v) = |A_v\setminus\{c\}|\).  Then \(\sum_{v \in V} g'(v) < \sum_{v \in V} g(v)\) and \(f'(v) \ge \sum_{u \in N[v]} g'(u)\) whenever \(g'(v) > 0\). By the induction hypothesis, \(D\) is (f':g')-choosable.  Thus there are sets \(B'_u\) and \(B'_v\) that are subsets of \(A_u\setminus\{c\}\) and \(A_v\setminus\{c\}\), respectively, such that for any \(u\) and \(v\) that share an edge, \(B'_u \cap B'_v\) is empty.  If we can show that adding back a color to the appropriate \(B'\) sets will result in every \(v\) being assigned a subset \(B'_v\) that has size \(g(v)\) and is a subset of \(A_v\), then we will have shown that \(D\) is (f:g)-choosable.  Define sets \(B_v\) by setting \(B_v = B'_v \cup \{c\}\) if \(v \in K\), and \(B_v = B'_v\) otherwise.  Then \(|B_v| = g(v)\) for every \(v \in V\), and \(B_u \cap B_v\) is empty if \(u\) and \(v\) share an edge.</p>
+         <orbit-reviewarea color="turquoise" debug>
+            <orbit-prompt
+               question="What does the set $W$ represent?"
+               answer="It is the set of vertices with $g(v) > 0$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What does the set $C$ represent?"
+               answer="It is the union of all the colors assigned to the vertices in $W$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="What does the set $S$ represent?"
+               answer="$S$ is a subset of the vertices of $W$, where each element $v \in S$ also contains color $c$ in its list of $A_v$ colors."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Can $K$ be empty?"
+               answer="No;  As every induced subgraph of $D$ has a kernel, and $S$ is a non empty graph by the way we specified it, $K$ is not empty."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Is $f'(v) = |A_v\setminus\{c\}|?$"
+               answer="Yes"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Why is the inequality strict between the sums of $g(v)$ and $g'(v)$ over all the vertices in the graph?"
+               answer="This is because K is not empty, so for at least one $v$, $g'(v) < g(v)$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Why does it follow from the previous results that $f'(v) \ge \sum_{u \in N[v]} g'(u)$ whenever $g'(v) > 0$?"
+               answer="The only interesting case we need to consider is when $v \in S$, and $g'(v) > 0$, otherwise the inequality follows immediately from the premises as $f'(v) = f(v)$ and $g'(v) = g(v)$ for all $v \notin S$ and would be true as any natural number is \ge 0$, respectively.  If $v \in K$, and $g'(v) > 0$, then  $\sum_{u \in N[v]} (g(u) - g'(u)) = 1$, as no vertices in the kernel have edges to each other so the only $u \in N[v]$ where $g'(u) = g(u) - 1$ is when $u = v$ (as $N[v]$ is the *closed neighborhood* of $v$, namely, it includes $v$). $f(v) - f'(v) = 1$ as well given the type of vertex $v$ is. So $f'(v) >= \sum_{u \in N[v]} g'(u)$.  If $v \notin in K$ but is in $S$, and $g'(v) > 0$, then $f'(v) = f(v) - 1$ as well, but the amount that $\sum_{u \in N[v]} g(u)$ differs from $$\sum_{u \in N[v]} g'(u)$$ is the size of $K$, which we have shown in an earlier card in this set to be at least 1.  Thus the inequality holds $f'(v) >= \sum_{u \in N[v]} g'(u)$"
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Why can the induction hypothesis be invoked based on the value of $\sum_{v \in V} g'(v)$?"
+               answer="It can be invoked because $\sum_{v \in V} g'(v) < \sum_{v \in V} g(v)$ "
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Explain why we only need to consider adding back vertices to the $B'$ lists selected such that $D$ is (f':g')-choosable, to show that $D$ is also (f:g)-choosable."
+               answer="the $B'$ sets are drawn from $A_v\setminus\{c\}$, so all we need to do is to add back to the $B'$ sets that are missing $c$ is none other than the set $\{c\}$."
+               ></orbit-prompt>
+            <orbit-prompt
+               question="Why are we adding back the color $c$ to all the $B'_v$ associated with $v \in  K$, only?"
+               answer="For every vertex $v$ in $K$, $B'_v$ is of size $g(v) - 1$ by how we defined $g'(v)$.  For every other vertex in the graph, including the remaining ones in $S$, $g(v) = g'(v)$.  Further, none of the $B'$ sets assigned to any of the vertices in the graph as per the induction hypothesis, contain $c$ (as we defined $f'(v) = |A_v\setminus\{c\}|$ and used this size to draw $B'$ sets from).  So as none of the vertices in $K$ share an edge, we can add back $c$ to each $B'_v$ only if $v \in K$.  "
+               ></orbit-prompt>
+         </orbit-reviewarea>
+         Now try giving the paper another look and see if the below makes sense regarding how to prove the main result of the paper!
+         <p>The result of "every line graph of a multigraph is solvable iff it is perfect" is used as the first step to prove the Dinitz conjecture. It is shown in an earlier result (which is one of my open questions/areas to explore, that is clearly explained in that is covered in Maffray's paper), that the line graph of the bipartite graph \(K_{n,n}\), is perfect. The statement "every line graph of a multigraph is perfect" is equivalent to 
+         <ul>
+            <li>"every perfect line graph is solvable" (by Maffray's theorem)
+            <li>"every line graph of a multigraph has the property that every induced subgraph is solvable"  (this is by the fact that "every induced subgraph of a solvable graph G, is solvable", which is an "open question" of mine)</li>
+            <li>"every line graph of a multigraph has the property that every induced subgraph's normal orientations contain a kernel" (definition of solvable)</li>
+            <li>"if D is a normal orientation of the line graph of \(K_{n,n}\), then as the underlying graph of D is solvable, every induced subgraph of D contains a kernel"  (this is by "every induced subgraph of a normal graph, is normal" and by the definition of solvable that states that "every normal orientation contains a kernel"--collectively these two statements imply that every induced subgraph of D is normal, and thus has a kernel)</li>
+         </ul>
+         Then, as can be seen in Theorem 4.1 in the paper, we can very cleverly choose a particular orientation D of the line graph of \(K_{n,n}\) for which it is convenient to show that D is normal, show that D has the property that the maximum outdegree for any vertex in D is n - 1, and invoke Lemma 2.1 to show that D is n-choosable.  Note that by showing that *any particular orientation* of the line graph of \(K_{n,n}\) is n-choosable, we will have proved Dinitz' conjecture--this is because the definition of n-choosable invokes the property of two vertices sharing an edge in *any particular direction*. </p>
+         <h2 id="open-questions">My open questions
+            <a href="#toc" class="heading-marker">↩︎</a>
+         </h2>
+         <ul>
+            <li>Why is a clique defined to be non empty?</li>
+            <li>
+               (Maffray&#39;s theorem)
+               <ul>
+                  <li>Why is it the case that the line graph of a multigraph (a graph with potentially multiple edges between the same pair of vertices) is perfect iff it is solvable? </li>
+               </ul>
+            </li>
+            <li>How do you visualize the kernel of any graph? Right now the only cases I know how to in are when the graph is fully connected (where the kernel must consist of just 1 vertex)</li>
+            <li>
+               How do you determine if the vertices of a graph can be partitioned into sets, where each element of the partition  must contain more than 1 element and contains vertices that form an independent set?
+               <ul>
+                  <li>For example this is not possible for a fully connected graph </li>
+                  <li>
+                     However you can see that in the graph below, you can partition the vertices into 5 sets containing 4 vertices each
+                     <ul>
+                        <li><img src="QBtqZJYudG.png" alt=""></li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+            <li>Show (or disprove) that every non normal orientation \(N\) of a solvable graph \(G\), where if any vertex is deleted from \(N\) and the graph becomes normal, that \(N\) will have a kernel.</li>
+            <li>Can you find an undirected graph \(G\) where the size of the set of its normal orientations will increase if one of \(G\)&#39;s vertices are removed?</li>
+            <li>
+               Is this graph solvable?
+               <ul><li<img src="https://quantum-journal.org/wp-content/uploads/2020/06/LineGraphofK6QuantumCover.png" alt=""></li></ul>
+            </li>
+            <li>How do you show that the line graph of the bipartite graph \(K_{n,n}\), is &quot;perfect&quot;?</li>
+            <li>
+               Prove that every induced subgraph of a solvable graph \(G\), solvable
+               <ul>
+                  <li>Below is my attempted proof sketch with the sub bullets under 1) and 2) remaining unsolved by me.</li>
+                  <li>A solvable graph is one where every normal orientation has a kernel--a &quot;normal orientation&quot; of an undirected graph, is one where adding directed edges between any two vertices \(u\) and \(v\) with an edge in the undirected graph, will result in a directed graph (digraph) such that every clique has a kernel.  </li>
+                  <li>
+                     We will consider the set of normal orientations on a graph missing any particular vertex \(v\) from \(G\) (with all the incident edges to \(v\) removed as well), and show that for every element in this set, the normal orientation \(N\) contains a kernel. Thus we will have shown that removing any \(v\) will result in a solvable subgraph, and we can extend this process recursively by removing any number of vertices. There are two cases on the type of \(N\), and below each case is the intermediate result used to prove the case:
+                     <ul>
+                        <li>
+                           1) there exists a normal orientation \(M\) of \(G\) such that removing \(v\) results in \(N\).
+                           <ul>
+                              <li>Show (or disprove) that every normal graph \(G\) with a kernel \(K\), where if any vertex is deleted and the graph continues to be normal, that this graph will continue to have a kernel.</li>
+                           </ul>
+                        </li>
+                        <li>
+                           2) there exists a non normal orientation \(M\) of \(G\) such that removing \(v\) results in \(N\). 
+                           <ul>
+                              <li>Show (or disprove) that every non normal orientation N of a solvable graph \(G\), where if any vertex is deleted from \(N\) and the graph becomes normal, that \(N\) will have a kernel.</li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+            <li>Why is the &quot;stable marriage theorem&quot; able to be restated as the line graph of \(K_{n,n}\) is solvable?</li>
+         </ul>
       </article>
    </body>
 </html>
