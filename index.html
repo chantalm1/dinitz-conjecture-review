@@ -11,11 +11,11 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Lusitana:wght@400;700&display=swap" rel="stylesheet">
    </head>
-   <body style="font-size: 21px; margin: 10px 10px; line-height: 1.2;  background-color: #32b3c2; font-family: 'Crimson Text'">
+   <body style="font-size: 16px; margin: 10px 10px; line-height: 1.2;  background-color: #32b3c2; font-family: 'Crimson Text'">
       <article style="max-width: 45rem; margin: 12px auto; padding: 50px; background-color: #ffffff;">
          <h1 style="font-size: 30px;">A friendly guide to understanding the Dinitz conjecture</h1>
          by Chartreuese Goose
-         <h2 id="toc">Table of contents</h2>
+         <h2 id="toc" style="font-size: 24px;">Table of contents</h2>
          <ul>
             <li><a href="#intro">Introduction</a></li>
             <li><a href="#definitions">Definitions</a></li>
@@ -24,11 +24,11 @@
             <li><a href="#challenge-problems">Challenge problems</a></li>
             <li><a href="#open-questions">My open questions</a></li>
          </ul>
-         <h2 id="intro">Introduction
+         <h2 id="intro" style="font-size: 24px;">Introduction
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <p>This is a guide for people who want to learn how to understand a primary research paper in math, specifically in the area of graph theory, one of the more accessible areas of math.  If that is the case, this is the guide for you!  This guide covers the background needed to understand <a href="https://en.wikipedia.org/wiki/Dinitz_conjecture">Galvin's proof of the Dinitz conjecture</a>.  The way I would suggest using this guide is to first give a look through of Galvin's succinct <a href="https://kostochk.web.illinois.edu/math581/galvin.pdf">proof</a>.  Pending any confusions from the reader, reading the "Definitions" and "Beginner problems" sections of this guide will aid in clarifying definitions and quizzing oneself on the way in which they are to be used, aiding in gaining foundation to make the paper easy-reading for anyone! After these two sections are covered to one's liking, the "Problems" and "Challenge problems" sections cover some harder questions as well as how to interpret the two main results in the paper. Once the reader has covered these four sections, they will be well equipped to read through this succinct paper. The "My open questions" section outlines some of the pending areas of investigation I had.</p>
-         <h2 id="definitions">Definitions
+         <h2 id="definitions" style="font-size: 24px;">Definitions
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <orbit-reviewarea color="turquoise">
@@ -150,7 +150,7 @@
                answer="$K$ absorbs a vertex $v$ if $N[v] \cap K =  \emptyset$"
                ></orbit-prompt>
          </orbit-reviewarea>
-         <h2 id="beginner-problems">Beginner problems
+         <h2 id="beginner-problems" style="font-size: 24px;">Beginner problems
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <orbit-reviewarea color="turquoise">
@@ -337,7 +337,7 @@
                answer="" answer-attachments="bQtUc5lAXz.png"
                ></orbit-prompt>
          </orbit-reviewarea>
-         <h2 id="problems">Problems
+         <h2 id="problems" style="font-size: 24px;">Problems
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <orbit-reviewarea color="turquoise">
@@ -355,7 +355,7 @@
                answer="No; Let us consider an orientation of this graph where both black and pink edges from the 'middle ring' (where 'middle ring' here is defined as the 6 vertices selected in yellow) to the 'inner ring' (where 'inner ring' is defined to be the three vertices in the center of the middle)  are pointing towards the inner ring--so the vertex in the inner ring in the top-left of the triangle (henceforth called vertex 'T') has four incoming edges from the middle ring.  This is a normal orientation for the graph--the four affected edges, two black and two pink, are edges within exactly one clique of size 3 (and of course the trivial cliques consisting of an edge), and each have a kernel consisting of T.  But T has no outgoing edge towards any of the vertices in the middle ring, so the middle ring can't be a kernel for this graph. "
                ></orbit-prompt>
          </orbit-reviewarea>
-         <h2 id="challenge-problems">Challenge Problems
+         <h2 id="challenge-problems" style="font-size: 24px;">Challenge Problems
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <orbit-reviewarea color="turquoise">
@@ -422,7 +422,7 @@
             <li>"if D is a normal orientation of the line graph of \(K_{n,n}\), then as the underlying graph of D is solvable, every induced subgraph of D contains a kernel"  (this is by "every induced subgraph of a normal graph, is normal" and by the definition of solvable that states that "every normal orientation contains a kernel"--collectively these two statements imply that every induced subgraph of D is normal, and thus has a kernel)</li>
          </ul>
          Then, as can be seen in Theorem 4.1 in the paper, we can very cleverly choose a particular orientation D of the line graph of \(K_{n,n}\) for which it is convenient to show that D is normal, show that D has the property that the maximum outdegree for any vertex in D is n - 1, and invoke Lemma 2.1 to show that D is n-choosable.  Note that by showing that *any particular orientation* of the line graph of \(K_{n,n}\) is n-choosable, we will have proved Dinitz' conjecture--this is because the definition of n-choosable invokes the property of two vertices sharing an edge in *any particular direction*. </p>
-         <h2 id="open-questions">My open questions
+         <h2 id="open-questions" style="font-size: 24px;">My open questions
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <ul>
