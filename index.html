@@ -152,7 +152,7 @@
                ></orbit-prompt>
             <orbit-prompt
                question="What does it mean for a graph $G$ to be (f:g)-choosable for functions $f,g: V \to \mathbb{N}$?"
-               answer="For $G$ to be (f:g)-choosable means for any pair of vertices $u$ and $v$ sharing an edge (any any direction), assigned any $f(u)$ and $f(v)$ sized subsets of $\mathbb{N}$, denoted $A_u$ and $A_v$ respectively, (with no repeating elements within $A_u$ or $A_v$), then there exist subsets $B_u$ and $B_v$ of $A_u$ and $A_v$, sized $g(u)$ and $g(v)$ respectively, such that $B_u \cap B_v = \emptyset$."
+               answer="For $G$ to be (f:g)-choosable means for any pair of vertices $u$ and $v$ sharing an edge (in any direction), assigned any $f(u)$ and $f(v)$ sized subsets of $\mathbb{N}$, denoted $A_u$ and $A_v$ respectively, (with no repeating elements within $A_u$ or $A_v$), then there exist subsets $B_u$ and $B_v$ of $A_u$ and $A_v$, sized $g(u)$ and $g(v)$, respectively, such that $B_u \cap B_v = \emptyset$."
                ></orbit-prompt> 
             <orbit-prompt
                question="What does it mean for a graph $G$ to be $n$-choosable for some natural number $n$?"
@@ -356,7 +356,8 @@
          <orbit-reviewarea color="turquoise">
             <orbit-prompt
                question="Explain why for any graph $G$, the the choice number of $G$, denoted $ch(G)$, is always greater than equal to the chromatic number of $G$, denoted $\chi(G)$."
-               answer=" answer="If a graph $G$ has a choice number of $n$ (namely, it is n-choosable) and we can show that $G$ can be colored with $n$ distinct colors, then we will have shown the inequality.  $n$-choosability involves showing that despite any arbitrary assignment of $n$ colors to each vertex, one color can be selected from each of the lists such that no two vertices sharing an edge have the same color--so by the guarantee of $n$-choosability, an assignment of the colors $1,2,3...n$, which is of course an $n$ sized list, to each vertex will yield a valid coloring."></orbit-prompt>            
+               answer="If a graph $G$ has a choice number of $n$ (namely, it is n-choosable) and we can show that $G$ can be colored with $n$ distinct colors, then we will have shown the inequality.  $n$-choosability involves showing that despite any arbitrary assignment of $n$ colors to each vertex, one color can be selected from each of the lists such that no two vertices sharing an edge have the same color--so by the guarantee of $n$-choosability, an assignment of the colors $1,2,3...n$, which is of course an $n$ sized list, to each vertex will yield a valid coloring."
+            ></orbit-prompt>            
             <orbit-prompt
                question="Give an example of a graph which is not solvable"
                answer="Flower snark:
