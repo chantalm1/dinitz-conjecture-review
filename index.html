@@ -47,7 +47,7 @@
                ></orbit-prompt>
             <orbit-prompt
                question="What is the line graph of a graph $G$?"
-               answer="This is a graph, denoted $L(G)$, defined by using the edges of $G$ as vertices, and drawing an edge between two vertices in $L(G)$ if the corresponding edges in $G$ share a vertex"
+               answer="This is a graph, denoted $L(G)$, defined by using the edges of $G$ as vertices, and drawing an edge between two vertices in $L(G)$ if the corresponding edges in $G$ share a vertex. Below is an example: " answer-attachments="https://raw.githubusercontent.com/timothyw4231/dinitz-conjecture-review/main/equivalence_bipartite_squaregrid.png"
                ></orbit-prompt>
             <orbit-prompt
                question="What is the term digraph short for?"
@@ -152,11 +152,11 @@
                ></orbit-prompt>
             <orbit-prompt
                question="What does it mean for a graph $G$ to be (f:g)-choosable for functions $f,g: V \to \mathbb{N}$?"
-               answer="For $G$ to be (f:g)-choosable means for any pair of vertices $u$ and $v$ sharing an edge (any any direction), assigned any $f(u)$ and $f(v) sized subsets of $\mathbb{N}$, denoted $A_u$ and $A_v$ respectively, (with no repeating elements within $A_u$ or $A_v$), then there exist subsets $B_u$ and $B_v$ of $A_u$ and $A_v$, sized $g(u)$ and $g(v)$ respectively, such that $g(u) \cap g(v) = \emptyset$."
+               answer="For $G$ to be (f:g)-choosable means for any pair of vertices $u$ and $v$ sharing an edge (any any direction), assigned any $f(u)$ and $f(v)$ sized subsets of $\mathbb{N}$, denoted $A_u$ and $A_v$ respectively, (with no repeating elements within $A_u$ or $A_v$), then there exist subsets $B_u$ and $B_v$ of $A_u$ and $A_v$, sized $g(u)$ and $g(v)$ respectively, such that $B_u \cap B_v = \emptyset$."
                ></orbit-prompt> 
             <orbit-prompt
                question="What does it mean for a graph $G$ to be $n$-choosable for some natural number $n$?"
-               answer="$G$ is $n$-choosable if it is (f:g)-choosable for the constant functions $f(v) = n$ and $g(v) = 1$ for all vertices in $G$.
+               answer="$G$ is $n$-choosable if it is (f:g)-choosable for the constant functions $f(v) = n$ and $g(v) = 1$ for all vertices in $G$."
             ></orbit-prompt>                                                                                                           
             <orbit-prompt
                question="What is the choice number of a graph $G$?"
@@ -368,8 +368,8 @@
                ></orbit-prompt>
             <orbit-prompt
                question="Does the set consisting of the selected vertices in yellow form the kernel of every normal orientation of this graph?" question-attachments="https://raw.githubusercontent.com/timothyw4231/dinitz-conjecture-review/main/xybgJLrlmn.png" 
-               answer="No; Let us consider an orientation of this graph where both black and pink edges from the 'middle ring' (where 'middle ring' here is defined as the 6 vertices selected in yellow) to the 'inner ring' (where 'inner ring' is defined to be the three vertices in the center of the middle)  are pointing towards the inner ring--so the vertex in the inner ring in the top-left of the triangle (henceforth called vertex 'T') has four incoming edges from the middle ring.  This is a normal orientation for the graph--the four affected edges, two black and two pink, are edges within exactly one clique of size 3 (and of course the trivial cliques consisting of an edge), and each have a kernel consisting of T.  But T has no outgoing edge towards any of the vertices in the middle ring, so the middle ring can't be a kernel for this graph. "
-               ></orbit-prompt>
+               answer="answer="No; Let us consider an orientation of this graph where both black and pink edges from the 'middle ring' (the 6 vertices selected in yellow) to the 'inner ring' (the three vertices in the cente)  are pointing towards the inner ring--so the vertex in the inner ring in the top-left of the triangle (henceforth called vertex 'T') has four incoming edges from the middle ring.  This is a normal orientation for the graph--the four affected edges, two black and two pink, are edges within exactly one clique of size 3, and each have a kernel consisting of T.  But T has no outgoing edge towards any of the vertices in the middle ring, so the middle ring can't be a kernel for this graph."
+             ></orbit-prompt>
                <orbit-prompt
                question="What is the chromatic index of $K_{n,n}$?"
                answer="n; this can be shown inductively. Suppose you have a graph of n nodes that is fully connected.  We can show inductively on the node number, that if the first i nodes all have different colors, we must select a color distinct from the first i for the i+1 st node. Now that you have shown it is possible to color a fully connected graph of n nodes with n colors, then if you see the line graph of $K_{n,n}$, n as an $n \times n$ grid, just displace the next row’s colors by 1, and keep doing for each row. You can see that each column and row will have n distinct colors."
