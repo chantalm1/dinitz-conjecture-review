@@ -11,3 +11,11 @@ article {
   padding: 50px;
   background-color: #ffffff;
 }
+
+a:visited{
+  color: #4eb394;
+}
+
+a:link{
+  color:#468392;
+}
