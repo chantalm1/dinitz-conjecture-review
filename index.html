@@ -4,7 +4,7 @@
       <!-- MathJax -->
       <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-	  <link rel="stylesheet" href="style.css">      
+	  <link rel="stylesheet" href="style.css">
    </head>
    <body style="font-size: 18px; margin: 10px 10px; line-height: 1.4;  background-image: url('https://github.com/timothyw4231/dinitz-conjecture-review/blob/main/turquoise-background.jpg?raw=true'); background-size: 100% auto; background-repeat: repeat-y; font-family: Georgia">
       <article style="max-width: 45rem; margin: 12px auto; padding: 50px; background-color: #f3fbfb; border-radius: 10px;">
@@ -428,11 +428,11 @@
                answer="For every vertex $v$ in $K$, $B'_v$ is of size $g(v) - 1$ by how we defined $g'(v)$.  For every other vertex in the graph, including the remaining ones in $S$, $g(v) = g'(v)$.  Further, none of the $B'$ sets assigned to any of the vertices in the graph as per the induction hypothesis, contain $c$ (as we defined $f'(v) = |A_v\setminus\{c\}|$ and used this size to draw $B'$ sets from).  So as none of the vertices in $K$ share an edge, we can add back $c$ to each $B'_v$ only if $v \in K$.  "
                ></orbit-prompt>
          </orbit-reviewarea>
-         <p>What's interesting to observe is that the line graph of \(K_{n,n}\) is exactly the sort of \(n \times n\) grid we are interested in list coloring (as per the <a href="#intro">Introduction</a>).  To make this equivalence clear, below is an image that may be helpful. On the left is an instance of the bipartite graph \(K_{n,n}\) when \(n = 3\).  Each vertex is given a different color so that it visually makes sense when consider the edge between two colors in the bipartite graph, the line graph contains the vertex that is a mixture of the two colors.  For example, the edge between the red and the green vertex in the bipartite graph is represented as a vertex with a red border and a green filling in the line graph.  All the edges incident to the edge connecting the red and green vertex in the bipartite graph, are incident to edges that contain a red or green vertex--and in the line graph, it can be clearly seen that the red bordered and green filled vertex (which represents the edge in the bipartite graph between the red and green vertex), has edges to 4 other vertices that have either a red border of a green filling.  This coloring of the vertices is for easy visualization of the equivalence between the line graph of the bipartite graph and the graph we are hoping to work with for the Dinitz conjecture. 
+         <p>What's interesting to observe is that the line graph of \(K_{n,n}\) is exactly the sort of \(n \times n\) grid we are interested in list coloring (as per the <a href="#intro">Introduction</a>).  To make this equivalence clear, below is an image that may be helpful. On the left is an instance of the bipartite graph \(K_{n,n}\) when \(n = 3\).  Each vertex is given a different color so that it visually makes sense when consider the edge between two colors in the bipartite graph, the line graph contains the vertex that is a mixture of the two colors.  For example, the edge between the red and the green vertex in the bipartite graph is represented as a vertex with a red border and a green filling in the line graph.  All the edges incident to the edge connecting the red and green vertex in the bipartite graph, are incident to edges that contain a red or green vertex--and in the line graph, it can be clearly seen that the red bordered and green filled vertex (which represents the edge in the bipartite graph between the red and green vertex), has edges to 4 other vertices that have either a red border of a green filling.  This coloring of the vertices is for easy visualization of the equivalence between the line graph of the bipartite graph and the graph we are hoping to work with for the Dinitz conjecture.</p> 
          <img src="https://raw.githubusercontent.com/timothyw4231/dinitz-conjecture-review/main/equivalence_bipartite_squaregrid_1.png" alt=""></img>
-         </p>
+         
 
-         Now try giving <a href="https://kostochk.web.illinois.edu/math581/galvin.pdf">Galvin's proof of the Dinitz conjecture</a> another look and see if the below makes sense regarding how to prove the main result of the paper!
+         <p>Now try giving <a href="https://kostochk.web.illinois.edu/math581/galvin.pdf">Galvin's proof of the Dinitz conjecture</a> another look and see if the below makes sense regarding how to prove the main result of the paper!</p>
          <p>The result of "every line graph of a multigraph is solvable iff it is perfect" is used as the first step to prove the Dinitz conjecture. It is shown in an earlier result (which is one of my open questions/areas to explore, that is clearly explained in the proof of <a href="#maffray">Maffray's theorem</a>), that the line graph of the bipartite graph \(K_{n,n}\), is perfect, which is one of my open <a href="#perfect_line_graph">questions</a>. The statement "every line graph of a multigraph is perfect" is equivalent to: 
          <ul>
             <li>"every perfect line graph is solvable" (by <a href="#maffray">Maffray's theorem</a> which is also referenced in Galvin's paper)
@@ -447,7 +447,7 @@
          <ul>
             <li>The proof outlined in Galvin's paper outlines the existence of a valid list coloring, but does not cover the *algorithm* for actually producing such a coloring. What would that algorithm look like and does it already exist? What is its computational complexity?</li>
             <li id="maffray">
-               Maffray&#39;s theorem: covered in <a href="https://core.ac.uk/download/pdf/81952648.pdf">Kernels in Perfect Line-Graphs></a>
+               Maffray&#39;s theorem: covered in <a href="https://core.ac.uk/download/pdf/81952648.pdf">Kernels in Perfect Line-Graphs</a>
                <ul>
                   <li>The line graph of a multigraph (a graph with potentially multiple edges between the same pair of vertices) is perfect iff it is solvable.</li>
                </ul>
