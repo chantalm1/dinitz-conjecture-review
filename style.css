@@ -2,8 +2,7 @@ body {
   margin: 10px 10px;
   font-size: 18px; 
   line-height: 1.4;  
-  background-image: url('https://github.com/timothyw4231/dinitz-conjecture-review/blob/main/turquoise-background.jpg?raw=true'); 
-  background-size: 100% auto; 
+  background-image: url('https://github.com/timothyw4231/dinitz-conjecture-review/blob/main/turquoise-background.jpg?raw=true'); background-size: 100% auto; 
   background-repeat: repeat-y; 
   font-family: Georgia  
 }
@@ -21,11 +20,11 @@ h1 {
 }
 
 a:visited{
-  color: #4eb394;
+  color: #17afa2;
 }
 
 a:link{
-  color:#468392;
+  color:#2387af;
 }
 
 p {
@@ -34,6 +33,6 @@ p {
 }
 
 h2 {
-  color:#1a646e;
+  color:#0a4258;
   font-size: 22px;
 }
