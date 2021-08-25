@@ -4,13 +4,13 @@
       <!-- MathJax -->
       <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      <link rel="stylesheet" href="style.css" />
+	  <link rel="stylesheet" href="style.css" />
    </head>
-   <body style="font-size: 18px; margin: 10px 10px; line-height: 1.4;  background-image: url('https://github.com/timothyw4231/dinitz-conjecture-review/blob/main/turquoise-background.jpg?raw=true'); background-size: 100% auto; background-repeat: repeat-y; font-family: Georgia">
-      <article style="max-width: 45rem; margin: 12px auto; padding: 50px; background-color: #f3fbfb; border-radius: 10px;">
-         <h1 style="font-size: 28px;">A friendly guide to understanding a primary research paper: the proof of the Dinitz conjecture</h1>
+   <body>
+      <article>
+         <h1>A friendly guide to understanding a primary research paper: the proof of the Dinitz conjecture</h1>
          <i>by Chartreuese Goose</i>
-         <h2 id="toc" style="font-size: 24px;">Table of contents</h2>
+         <h2 id="toc">Table of contents</h2>
          <ul>
             <li><a href="#intro">Introduction</a></li>
             <li><a href="#definitions">Definitions</a></li>
@@ -19,7 +19,7 @@
             <li><a href="#challenge-problems">Challenge problems</a></li>
             <li><a href="#open-questions">My open questions</a></li>
          </ul>
-         <h2 id="intro" style="font-size: 24px;">Introduction
+         <h2 id="intro">Introduction
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <p>This is a guide for people who want to learn how to understand a primary research paper in math, specifically in the area of graph theory, one of the more accessible areas of math.  If that is the case, this is the guide for you!  The <a href="https://en.wikipedia.org/wiki/Dinitz_conjecture">Dinitz conjecture</a> was a famous open problem for several decades, and concerns list coloring on a square \(n \times n\) grid. Specifically, if you have an \(n \times n\) grid, and you have a fixed list of \(m\) colors, where \(m \ge n\) and for each vertex, you arbitrarily assign \(n\) colors out of the \(m\) colors, is it possible to assign one color to each vertex out of each assigned list to the vertex, such that no row or column in the grid contains a duplicate color? It turns out the answer to this question is yes!</p>   
@@ -34,7 +34,7 @@
 
          </p>
          <p>The mathematician <a href="https://en.wikipedia.org/wiki/Fred_Galvin">Fred Galvin</a> famously gave an original and first proof for this conjecture, and this guide covers the background needed to understand his result.  The way I would suggest using this guide is to first give a quick look through of Galvin's succinct <a href="https://kostochk.web.illinois.edu/math581/galvin.pdf">proof</a>.  Pending any confusions from the reader, reading the <a href="#definitions">Definitions</a> and <a href="#beginner-problems">Beginner problems</a> sections of this guide will aid in clarifying definitions and quizzing oneself on the way in which they are to be used, aiding in gaining foundation to make the paper easy-reading for anyone! After these two sections are covered to one's liking, the <a href="#problems">Problems</a> and <a href="#challenge-problems">Challenge problems</a> sections cover some harder questions as well as how to interpret the two main results in the paper. Once the reader has covered these four sections, they will be well equipped to read through this succinct paper. The concluding <a href="#open-questions">My open questions</a> section outlines some of the pending areas of investigation I had.</p>
-         <h2 id="definitions" style="font-size: 24px;">Definitions
+         <h2 id="definitions">Definitions
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <orbit-reviewarea color="turquoise">
@@ -168,7 +168,7 @@
                answer="$K$ absorbs a vertex $v$ if $N[v] \cap K =  \emptyset$"
                ></orbit-prompt>
          </orbit-reviewarea>
-         <h2 id="beginner-problems" style="font-size: 24px;">Beginner problems
+         <h2 id="beginner-problems">Beginner problems
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <orbit-reviewarea color="turquoise">
@@ -351,7 +351,7 @@
                answer="" answer-attachments="https://raw.githubusercontent.com/timothyw4231/dinitz-conjecture-review/main/bQtUc5lAXz.png"
                ></orbit-prompt>
          </orbit-reviewarea>
-         <h2 id="problems" style="font-size: 24px;">Problems
+         <h2 id="problems">Problems
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <orbit-reviewarea color="turquoise">
@@ -377,7 +377,7 @@
                answer="n; this can be shown inductively. Suppose you have a graph of n nodes that is fully connected.  We can show inductively on the node number, that if the first i nodes all have different colors, we must select a color distinct from the first i for the i+1 st node. Now that you have shown it is possible to color a fully connected graph of n nodes with n colors, then if you see the line graph of $K_{n,n}$, n as an $n \times n$ grid, just displace the next row’s colors by 1, and keep doing for each row. You can see that each column and row will have n distinct colors."
                ></orbit-prompt>               
          </orbit-reviewarea>
-         <h2 id="challenge-problems" style="font-size: 24px;">Challenge Problems
+         <h2 id="challenge-problems">Challenge Problems
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <p>
@@ -441,7 +441,7 @@
             <li>"if \(D\) is a normal orientation of the line graph of \(K_{n,n}\), then as the underlying graph of \(D\) is solvable, every induced subgraph of \(D\) contains a kernel"  (this is by "every induced subgraph of a normal graph, is normal" [which is covered in the <a href="#beginner-problems">Beginner problems</a>] and by the definition of solvable that states that "every normal orientation contains a kernel" [which is covered in the <a href="#definitions">Definitions</a>]--collectively these two statements imply that every induced subgraph of \(D\) is normal, and thus has a kernel)</li>
          </ul>
          Then, as can be seen in Theorem 4.1 in the paper, we can very cleverly choose a particular orientation \(D\) of the line graph of \(K_{n,n}\) for which it is convenient to show that \(D\) is normal, show that \(D\) has the property that the maximum outdegree for any vertex in \(D\) is \(n - 1\), and invoke Lemma 2.1 to show that \(D\) is \(n\)-choosable.  Note that by showing that *any particular orientation* of the line graph of \(K_{n,n}\) is \(n\)-choosable, we will have proved Dinitz' conjecture--this is because the definition of \(n\)-choosable invokes the property of two vertices sharing an edge in <i>any particular direction</i>. </p>
-         <h2 id="open-questions" style="font-size: 24px;">My open questions
+         <h2 id="open-questions">My open questions
             <a href="#toc" class="heading-marker">↩︎</a>
          </h2>
          <ul>
