@@ -19,3 +19,11 @@ a:visited{
 a:link{
   color:#468392;
 }
+
+p {
+	padding-left: 10px; padding-right: 10px;
+}
+
+h2 {
+	color:#1a646e;
+}
